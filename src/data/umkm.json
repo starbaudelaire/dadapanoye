@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "nama": "Contoh UMKM",
+    "produk": "Produk Unggulan",
+    "deskripsi": "Deskripsi singkat UMKM.",
+    "pemilik": "Nama Pemilik",
+    "wa": "628123456789",
+    "maps": "https://maps.google.com/?q=-7.8,110.3",
+    "foto": "/images/umkm/placeholder.jpg",
+    "top": "40",
+    "left": "50"
+  }
+]

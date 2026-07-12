@@ -1,0 +1,18 @@
+{
+  "pkk": {
+    "ketua": "Nama Ketua PKK",
+    "anggota": []
+  },
+  "karang_taruna": {
+    "ketua": "Nama Ketua Karang Taruna",
+    "anggota": []
+  },
+  "posyandu": {
+    "ketua": "Nama Ketua Posyandu",
+    "jadwal": "Setiap tanggal X"
+  },
+  "kwt": {
+    "ketua": "Nama Ketua KWT",
+    "anggota": []
+  }
+}

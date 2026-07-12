@@ -1,0 +1,34 @@
+{
+  "sejarah": "Padukuhan Dadapan merupakan salah satu padukuhan yang berada di Kalurahan Timbulharjo...",
+  "visi": "Terwujudnya Padukuhan Dadapan yang mandiri, sejahtera, dan berbudaya.",
+  "misi": [
+    "Meningkatkan kualitas sumber daya manusia.",
+    "Mengembangkan potensi ekonomi lokal.",
+    "Memperkuat nilai gotong royong dan kebudayaan lokal."
+  ],
+  "statistik": {
+    "total_jiwa": 0,
+    "total_kk": 0,
+    "luas_wilayah": "0 Ha",
+    "sektor_utama": "Pertanian"
+  },
+  "pamong": [
+    {
+      "jabatan": "Dukuh",
+      "nama": "Nama Dukuh",
+      "foto": "/images/pamong/dukuh.jpg"
+    }
+  ],
+  "kukuban": [
+    {
+      "nama": "Dadapan Lor",
+      "ketua": "Nama Ketua",
+      "rt": ["RT 01", "RT 02"]
+    },
+    {
+      "nama": "Dadapan Kidul",
+      "ketua": "Nama Ketua",
+      "rt": ["RT 03", "RT 04"]
+    }
+  ]
+}
