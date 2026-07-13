@@ -78,8 +78,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Merriweather', 'Georgia', 'serif'],
+        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+        serif: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         lg: '0.625rem',
