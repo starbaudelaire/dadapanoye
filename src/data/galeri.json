@@ -1,9 +1,50 @@
 [
   {
     "id": 1,
-    "judul": "Kegiatan Pembukaan KKN",
-    "tanggal": "2025-07-01",
+    "judul": "Pembukaan KKN & Penerimaan Pamong",
+    "kategori": "Sosial",
+    "tanggal": "15 Juli 2026",
     "foto": "/images/galeri/placeholder.jpg",
-    "keterangan": "Pembukaan resmi KKN UPNYK Kelompok 84.021 di Padukuhan Dadapan."
+    "keterangan": "Acara penerimaan resmi mahasiswa KKN UPN 'Veteran' Yogyakarta oleh Pak Dukuh Dadapan dan jajaran RT."
+  },
+  {
+    "id": 2,
+    "judul": "Bimbingan Belajar & Pojok Baca Anak",
+    "kategori": "Pendidikan",
+    "tanggal": "18 Juli 2026",
+    "foto": "/images/galeri/placeholder.jpg",
+    "keterangan": "Program pendampingan belajar dan donasi buku bacaan gratis untuk anak-anak Padukuhan Dadapan."
+  },
+  {
+    "id": 3,
+    "judul": "Pemeriksaan Kesehatan & Posyandu Balita",
+    "kategori": "Kesehatan",
+    "tanggal": "20 Juli 2026",
+    "foto": "/images/galeri/placeholder.jpg",
+    "keterangan": "Pendampingan kegiatan rutin Posyandu balita dan lansia bersama kader kesehatan Dadapan."
+  },
+  {
+    "id": 4,
+    "judul": "Digitalisasi & Pelatihan Foto Produk UMKM",
+    "kategori": "Ekonomi",
+    "tanggal": "22 Juli 2026",
+    "foto": "/images/galeri/placeholder.jpg",
+    "keterangan": "Pelatihan pemotretan produk dan pemetaan katalog digital lokasi usaha warga Dadapan."
+  },
+  {
+    "id": 5,
+    "judul": "Kerja Bakti & Penanaman Bibit Tanaman",
+    "kategori": "Lingkungan",
+    "tanggal": "25 Juli 2026",
+    "foto": "/images/galeri/placeholder.jpg",
+    "keterangan": "Aksi hijau bersama warga untuk penghijauan pekarangan dan kebersihan lingkungan RT."
+  },
+  {
+    "id": 6,
+    "judul": "Sosialisasi Pemilahan Sampah Rumah Tangga",
+    "kategori": "Lingkungan",
+    "tanggal": "28 Juli 2026",
+    "foto": "/images/galeri/placeholder.jpg",
+    "keterangan": "Edukasi pengolahan sampah organik dan pemilahan sampah anorganik skala rumah tangga."
   }
 ]

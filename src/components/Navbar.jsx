@@ -3,139 +3,169 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Spinner } from '@/components/ui/spinner';
 
 const navLinks = [
-  { label: 'Beranda', href: '/' },
+  { href: '/', label: 'Beranda' },
   {
-    label: 'Profil Padukuhan',
     href: '/profil',
+    label: 'Profil',
     children: [
-      { label: 'Sejarah & Visi Misi', href: '/profil#sejarah' },
-      { label: 'Pemerintahan', href: '/profil#pamong' },
-      { label: 'Lembaga Desa', href: '/profil#lembaga' },
+      { href: '/profil#sejarah', label: 'Sejarah & Visi Misi' },
+      { href: '/profil#pamong', label: 'Pemerintahan & Pamong' },
+      { href: '/profil#lembaga', label: 'Lembaga Desa' },
     ],
   },
-  { label: 'Peta Wilayah', href: '/peta' },
-  { label: 'Katalog UMKM', href: '/umkm' },
-  { label: 'Galeri KKN', href: '/galeri' },
+  { href: '/peta', label: 'Peta Wilayah' },
+  { href: '/umkm', label: 'Katalog UMKM' },
+  { href: '/galeri', label: 'Galeri KKN' },
 ];
 
 export default function Navbar() {
   const router = useRouter();
+  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isActive = (href) => router.pathname === href;
+  // Global Page Route Navigation Spinner Listener
+  useEffect(() => {
+    const handleStart = () => setIsNavigating(true);
+    const handleComplete = () => {
+      setIsNavigating(false);
+      setMobileOpen(false);
+      setDropdownOpen(false);
+    };
+
+    router.events.on('routeChangeStart', handleStart);
+    router.events.on('routeChangeComplete', handleComplete);
+    router.events.on('routeChangeError', handleComplete);
+
+    return () => {
+      router.events.off('routeChangeStart', handleStart);
+      router.events.off('routeChangeComplete', handleComplete);
+      router.events.off('routeChangeError', handleComplete);
+    };
+  }, [router]);
 
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 w-full bg-white/80 backdrop-blur-xl border-b border-gray-200/50 transition-all duration-300',
-        scrolled ? 'shadow-lg' : 'shadow-sm'
+        'sticky top-0 z-50 h-16 w-full transition-all duration-300',
+        scrolled
+          ? 'bg-[#0f1219]/80 backdrop-blur-3xl border-b border-white/10 shadow-[0_10px_35px_rgba(0,0,0,0.5)]'
+          : 'bg-[#0f1219]/40 backdrop-blur-2xl border-b border-white/5'
       )}
     >
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 font-serif font-bold text-brand-800 text-lg">
-          <span>Padukuhan Dadapan</span>
+      {/* Top Global Route Loading Bar */}
+      {isNavigating && (
+        <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 animate-pulse z-50" />
+      )}
+
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
+        {/* Logo — Clean Minimal Text Logo */}
+        <Link href="/" className="flex flex-col group">
+          <div className="flex items-center gap-2">
+            <span className="font-extrabold text-base sm:text-lg bg-gradient-to-r from-white via-slate-100 to-blue-200 bg-clip-text text-transparent leading-none">
+              Padukuhan Dadapan
+            </span>
+            {isNavigating && <Spinner size="sm" className="ml-1" />}
+          </div>
+          <span className="text-[10px] text-[#94a3b8] font-medium mt-1">
+            Timbulharjo, Sewon, Bantul
+          </span>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) =>
-            link.children ? (
-              <div
-                key={link.label}
-                className="relative"
-                onMouseEnter={() => setDropdownOpen(true)}
-                onMouseLeave={() => setDropdownOpen(false)}
-              >
-                <button
-                  className={cn(
-                    'relative flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium transition-colors',
-                    'text-gray-600 hover:text-brand-700',
-                    'after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-brand-500 after:scale-x-0 after:transition-transform after:duration-300 after:origin-center',
-                    dropdownOpen && 'text-brand-700 after:scale-x-100'
-                  )}
+        {/* Desktop Navigation Links */}
+        <nav className="hidden lg:flex items-center gap-1.5" aria-label="Main Navigation">
+          {navLinks.map((link) => {
+            const isActive = router.pathname === link.href;
+
+            if (link.children) {
+              return (
+                <div
+                  key={link.label}
+                  className="relative"
+                  onMouseEnter={() => setDropdownOpen(true)}
+                  onMouseLeave={() => setDropdownOpen(false)}
                 >
-                  {link.label}
-                  <ChevronDown
+                  <button
                     className={cn(
-                      'h-4 w-4 transition-transform duration-300',
-                      dropdownOpen && 'rotate-180'
+                      'flex items-center gap-1 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer border',
+                      isActive || router.pathname.startsWith('/profil')
+                        ? 'text-blue-300 bg-gradient-to-r from-blue-500/15 via-indigo-500/15 to-purple-500/15 border-blue-400/30 shadow-md backdrop-blur-md'
+                        : 'text-[#f8fafc] border-transparent hover:text-white hover:bg-[#242c3d]/60 hover:border-white/10'
                     )}
-                  />
-                </button>
-                {dropdownOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-56 rounded-xl border border-gray-100 bg-white shadow-xl animate-scale-in overflow-hidden">
-                    {link.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="group relative block px-4 py-2.5 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700 transition-colors"
-                      >
-                        <span className="absolute left-0 top-0 bottom-0 w-0.5 bg-brand-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-200 origin-top" />
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ) : (
+                  >
+                    {link.label}
+                    <ChevronDown className={cn('h-3.5 w-3.5 transition-transform', dropdownOpen && 'rotate-180')} />
+                  </button>
+
+                  {/* Dropdown Menu — Apple Frosted Glass */}
+                  {dropdownOpen && (
+                    <div className="absolute top-full left-0 mt-2 w-56 rounded-2xl bg-[#181f2e]/90 backdrop-blur-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] p-2 animate-fade-in space-y-1">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className="block px-3.5 py-2.5 rounded-xl text-xs font-semibold text-[#94a3b8] hover:text-white hover:bg-[#242c3d]/80 transition-colors"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
+            return (
               <Link
-                key={link.href}
+                key={link.label}
                 href={link.href}
                 className={cn(
-                  'relative px-3 py-2 rounded-md text-sm font-medium transition-colors',
-                  'after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-brand-500 after:scale-x-0 after:transition-transform after:duration-300 after:origin-center',
-                  isActive(link.href)
-                    ? 'text-brand-700 font-semibold after:scale-x-100'
-                    : 'text-gray-600 hover:text-brand-700 hover:after:scale-x-100'
+                  'px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 border',
+                  isActive
+                    ? 'text-blue-300 bg-gradient-to-r from-blue-500/15 via-indigo-500/15 to-purple-500/15 border-blue-400/30 shadow-md backdrop-blur-md'
+                    : 'text-[#f8fafc] border-transparent hover:text-white hover:bg-[#242c3d]/60 hover:border-white/10'
                 )}
               >
                 {link.label}
               </Link>
-            )
-          )}
+            );
+          })}
         </nav>
 
-        {/* Mobile toggle */}
+        {/* Mobile Hamburger Button */}
         <button
-          className="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100 transition-colors"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
+          className="lg:hidden p-2.5 rounded-xl bg-[#242c3d]/80 backdrop-blur-xl border border-white/10 text-white hover:bg-[#2d374d] transition-colors"
+          aria-label="Toggle navigation menu"
         >
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Dropdown — Apple Frosted Glass */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-gray-200/50 bg-white/95 backdrop-blur-xl px-4 py-3 space-y-1 animate-slide-up">
-          {/* Decorative top gradient */}
-          <div className="h-0.5 bg-gradient-to-r from-brand-400 via-earth-400 to-brand-400 -mt-3 mb-3 rounded-full" />
-
+        <div className="lg:hidden border-t border-white/10 bg-[#0f1219]/90 backdrop-blur-3xl px-4 py-5 space-y-2.5 animate-slide-up shadow-2xl">
           {navLinks.map((link) =>
             link.children ? (
-              <div key={link.label}>
-                <p className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
+              <div key={link.label} className="space-y-1">
+                <span className="block px-3 py-1 text-xs font-bold uppercase text-blue-400 tracking-wider">
                   {link.label}
-                </p>
+                </span>
                 {link.children.map((child) => (
                   <Link
                     key={child.href}
                     href={child.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="block px-6 py-3 text-sm text-gray-600 hover:text-brand-700 hover:bg-brand-50 rounded-md transition-colors"
+                    className="block px-4 py-2.5 rounded-xl text-sm font-semibold text-[#f8fafc] hover:bg-[#242c3d]/80"
                   >
                     {child.label}
                   </Link>
@@ -143,14 +173,13 @@ export default function Navbar() {
               </div>
             ) : (
               <Link
-                key={link.href}
+                key={link.label}
                 href={link.href}
-                onClick={() => setMobileOpen(false)}
                 className={cn(
-                  'block px-3 py-3 rounded-md text-sm font-medium transition-colors',
-                  isActive(link.href)
-                    ? 'text-brand-700 bg-brand-50 font-semibold'
-                    : 'text-gray-600 hover:text-brand-700 hover:bg-brand-50'
+                  'block px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors border',
+                  router.pathname === link.href
+                    ? 'text-blue-300 bg-gradient-to-r from-blue-500/15 via-indigo-500/15 to-purple-500/15 border-blue-400/30 shadow-md'
+                    : 'text-[#f8fafc] border-transparent hover:bg-[#242c3d]/80'
                 )}
               >
                 {link.label}

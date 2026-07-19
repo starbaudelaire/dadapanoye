@@ -1,0 +1,98 @@
+{
+  "type": "FeatureCollection",
+  "name": "Peta_Timbulharjo_Dummy",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1,
+      "properties": {
+        "padukuhan": "Sudimoro",
+        "zona_gempa": "Zona Merah",
+        "kerawanan": "Tinggi",
+        "warna_hex": "#ff4d4d",
+        "penduduk": 1250
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [110.360, -7.860],
+            [110.368, -7.860],
+            [110.368, -7.868],
+            [110.360, -7.868],
+            [110.360, -7.860]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "properties": {
+        "padukuhan": "Tembi",
+        "zona_gempa": "Zona Oranye",
+        "kerawanan": "Sedang",
+        "warna_hex": "#ffa64d",
+        "penduduk": 980
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [110.368, -7.860],
+            [110.376, -7.860],
+            [110.376, -7.868],
+            [110.368, -7.868],
+            [110.368, -7.860]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "properties": {
+        "padukuhan": "Manden",
+        "zona_gempa": "Zona Hijau",
+        "kerawanan": "Rendah",
+        "warna_hex": "#4dff4d",
+        "penduduk": 1500
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [110.360, -7.868],
+            [110.368, -7.868],
+            [110.368, -7.876],
+            [110.360, -7.876],
+            [110.360, -7.868]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 4,
+      "properties": {
+        "padukuhan": "Kowang",
+        "zona_gempa": "Zona Hijau",
+        "kerawanan": "Rendah",
+        "warna_hex": "#4dff4d",
+        "penduduk": 850
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [110.368, -7.868],
+            [110.376, -7.868],
+            [110.376, -7.876],
+            [110.368, -7.876],
+            [110.368, -7.868]
+          ]
+        ]
+      }
+    }
+  ]
+}

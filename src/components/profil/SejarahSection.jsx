@@ -4,47 +4,115 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@/components/ui/accordion';
+import { GlassCard, GlassCardContent } from '@/components/ui/glass-card';
+import { GlassBadge } from '@/components/ui/glass-badge';
+import { BookOpen, Target, Award } from 'lucide-react';
 
-export default function SejarahSection({ sejarah, visi, misi }) {
+export default function SejarahSection({ sejarah, visi, misi = [] }) {
   return (
-    <section id="sejarah" className="py-14 bg-white scroll-mt-20">
-      <div className="container mx-auto px-4 max-w-3xl">
-        <h2 className="font-serif text-3xl font-bold text-brand-900 mb-2">Sejarah Padukuhan</h2>
-        <div className="w-12 h-1 bg-brand-500 rounded mb-6" />
-        <p className="text-gray-600 leading-relaxed mb-10">{sejarah}</p>
+    <div className="space-y-12">
+      {/* 2-Column Split Cards — Reference Layout Pattern */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        {/* Left Column: Sejarah Padukuhan (7 Cols) */}
+        <div className="lg:col-span-7">
+          <GlassCard className="h-full bg-[#181f2e]/85 border border-white/10 p-0 shadow-2xl">
+            <GlassCardContent className="p-6 sm:p-8 space-y-6 flex flex-col justify-between h-full">
+              <div className="space-y-5">
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-400/30 flex items-center justify-center text-blue-400">
+                      <BookOpen className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-semibold uppercase tracking-wider text-blue-400">
+                        ASAL USUL &amp; HISTORIS
+                      </span>
+                      <h2 className="text-xl sm:text-2xl font-bold text-[#f8fafc]">
+                        Sejarah Padukuhan
+                      </h2>
+                    </div>
+                  </div>
+                  <GlassBadge variant="accent">Warisan Budaya</GlassBadge>
+                </div>
 
-        <h2 className="font-serif text-3xl font-bold text-brand-900 mb-2">Visi &amp; Misi</h2>
-        <div className="w-12 h-1 bg-brand-500 rounded mb-6" />
+                <div className="prose prose-invert max-w-none text-[#94a3b8] text-sm sm:text-base leading-relaxed font-normal space-y-4">
+                  <p>{sejarah}</p>
+                </div>
+              </div>
 
-        <Accordion className="space-y-3">
-          <AccordionItem value="visi" className="border border-gray-200 rounded-lg overflow-hidden px-5">
-            <AccordionTrigger className="font-semibold text-gray-800 hover:no-underline py-4">
-              Visi
-            </AccordionTrigger>
-            <AccordionContent className="text-gray-600 leading-relaxed pb-4">
-              {visi}
-            </AccordionContent>
-          </AccordionItem>
+              <div className="pt-4 border-t border-white/10 flex items-center gap-2 text-xs text-[#64748b]">
+                <Award className="h-4 w-4 text-blue-400 shrink-0" />
+                <span>Padukuhan Dadapan • Kalurahan Timbulharjo, Sewon, Bantul</span>
+              </div>
+            </GlassCardContent>
+          </GlassCard>
+        </div>
 
-          <AccordionItem value="misi" className="border border-gray-200 rounded-lg overflow-hidden px-5">
-            <AccordionTrigger className="font-semibold text-gray-800 hover:no-underline py-4">
-              Misi
-            </AccordionTrigger>
-            <AccordionContent className="pb-4">
-              <ul className="space-y-2">
-                {misi.map((item, i) => (
-                  <li key={i} className="flex gap-3 text-gray-600">
-                    <span className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-brand-100 text-brand-700 text-xs flex items-center justify-center font-bold">
-                      {i + 1}
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+        {/* Right Column: Visi & Misi Padukuhan (5 Cols) */}
+        <div className="lg:col-span-5">
+          <GlassCard className="h-full bg-[#181f2e]/85 border border-white/10 p-0 shadow-2xl">
+            <GlassCardContent className="p-6 sm:p-8 space-y-6 flex flex-col justify-between h-full">
+              <div className="space-y-5">
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-400/30 flex items-center justify-center text-blue-400">
+                      <Target className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-semibold uppercase tracking-wider text-blue-400">
+                        ARAH KEMAJUAN
+                      </span>
+                      <h2 className="text-xl sm:text-2xl font-bold text-[#f8fafc]">
+                        Visi &amp; Misi
+                      </h2>
+                    </div>
+                  </div>
+                  <GlassBadge variant="accent">Rencana Strategis</GlassBadge>
+                </div>
+
+                <Accordion className="space-y-3">
+                  <AccordionItem
+                    value="visi"
+                    className="rounded-2xl overflow-hidden border border-white/10 bg-[#242c3d]/60 px-5"
+                  >
+                    <AccordionTrigger className="font-semibold text-[#f8fafc] hover:no-underline hover:text-blue-400 py-4 text-sm">
+                      Visi Pembangunan Padukuhan
+                    </AccordionTrigger>
+                    <AccordionContent className="text-[#94a3b8] text-xs sm:text-sm leading-relaxed pb-5 font-normal">
+                      {visi}
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem
+                    value="misi"
+                    className="rounded-2xl overflow-hidden border border-white/10 bg-[#242c3d]/60 px-5"
+                  >
+                    <AccordionTrigger className="font-semibold text-[#f8fafc] hover:no-underline hover:text-blue-400 py-4 text-sm">
+                      Misi &amp; Program Kerja Utama
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-5">
+                      <ul className="space-y-3">
+                        {misi.map((item, i) => (
+                          <li key={i} className="flex gap-3 text-[#94a3b8] text-xs sm:text-sm leading-relaxed font-normal">
+                            <span className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-400/30 text-blue-400 text-[11px] flex items-center justify-center font-bold">
+                              {i + 1}
+                            </span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
+
+              <div className="pt-4 border-t border-white/10 text-xs text-[#64748b] text-center">
+                Pemerintahan &amp; Kemasyarakatan Dadapan
+              </div>
+            </GlassCardContent>
+          </GlassCard>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

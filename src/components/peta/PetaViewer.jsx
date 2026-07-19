@@ -10,29 +10,29 @@ export default function PetaViewer({ src, alt }) {
   const reset = () => setScale(1);
 
   return (
-    <div className="relative w-full overflow-hidden rounded-xl border border-gray-200 bg-gray-100" style={{ height: '420px' }}>
+    <div className="relative w-full overflow-hidden rounded-xl border border-white/10 bg-[#141417]" style={{ height: 'clamp(260px, 50vw, 420px)' }}>
       {/* Zoom controls */}
-      <div className="absolute top-3 right-3 z-10 flex flex-col gap-1">
+      <div className="absolute top-3 right-3 z-10 flex flex-col gap-1.5">
         <button
           onClick={zoomIn}
-          className="p-2 bg-white rounded-lg shadow border border-gray-200 hover:bg-brand-50 transition-colors"
+          className="p-2 bg-[#27272a] rounded-lg shadow-md border border-white/10 hover:bg-[#3f3f46] transition-colors"
           aria-label="Zoom in"
         >
-          <ZoomIn className="h-4 w-4 text-gray-600" />
+          <ZoomIn className="h-4 w-4 text-indigo-400" />
         </button>
         <button
           onClick={zoomOut}
-          className="p-2 bg-white rounded-lg shadow border border-gray-200 hover:bg-brand-50 transition-colors"
+          className="p-2 bg-[#27272a] rounded-lg shadow-md border border-white/10 hover:bg-[#3f3f46] transition-colors"
           aria-label="Zoom out"
         >
-          <ZoomOut className="h-4 w-4 text-gray-600" />
+          <ZoomOut className="h-4 w-4 text-indigo-400" />
         </button>
         <button
           onClick={reset}
-          className="p-2 bg-white rounded-lg shadow border border-gray-200 hover:bg-brand-50 transition-colors"
+          className="p-2 bg-[#27272a] rounded-lg shadow-md border border-white/10 hover:bg-[#3f3f46] transition-colors"
           aria-label="Reset zoom"
         >
-          <Maximize2 className="h-4 w-4 text-gray-600" />
+          <Maximize2 className="h-4 w-4 text-[#fafafa]" />
         </button>
       </div>
 

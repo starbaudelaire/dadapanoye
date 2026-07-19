@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -23,33 +24,10 @@
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
 
-  /* Palet brand & earth */
-  --color-brand-50: #f0fdf4;
-  --color-brand-100: #dcfce7;
-  --color-brand-200: #bbf7d0;
-  --color-brand-300: #86efac;
-  --color-brand-400: #4ade80;
-  --color-brand-500: #22c55e;
-  --color-brand-600: #16a34a;
-  --color-brand-700: #15803d;
-  --color-brand-800: #166534;
-  --color-brand-900: #14532d;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-serif: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 
-  --color-earth-50: #fdf8f0;
-  --color-earth-100: #faecd8;
-  --color-earth-200: #f4d5a8;
-  --color-earth-300: #ecb870;
-  --color-earth-400: #e09040;
-  --color-earth-500: #d4711e;
-  --color-earth-600: #b85a14;
-  --color-earth-700: #964412;
-  --color-earth-800: #7a3715;
-  --color-earth-900: #642f14;
-
-  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-serif: 'Plus Jakarta Sans', system-ui, sans-serif;
-
-  --radius-lg: 0.625rem;
+  --radius-lg: 0.75rem;
   --radius-md: 0.5rem;
   --radius-sm: 0.375rem;
 
@@ -66,70 +44,123 @@
 
 html {
   scroll-behavior: smooth;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
 }
 
 @layer base {
   :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.527 0.154 150.069);
-    --primary-foreground: oklch(1 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.527 0.154 150.069);
-    --radius: 0.625rem;
+    /* Apple Dark Slate Blue-Gray & Cupertino Blue-to-Indigo Gradient Tokens */
+    --background: #0f1219;
+    --foreground: #f8fafc;
+
+    --card: rgba(24, 30, 44, 0.85);
+    --card-foreground: #f8fafc;
+
+    --popover: #1a202c;
+    --popover-foreground: #f8fafc;
+
+    --primary: #3b82f6;
+    --primary-foreground: #ffffff;
+
+    --secondary: #242c3d;
+    --secondary-foreground: #f8fafc;
+
+    --muted: #1e2638;
+    --muted-foreground: #94a3b8;
+
+    --accent: #242c3d;
+    --accent-foreground: #60a5fa;
+
+    --destructive: #ef4444;
+    --border: rgba(255, 255, 255, 0.1);
+    --input: #242c3d;
+    --ring: #3b82f6;
+    --radius: 0.75rem;
+
+    /* Glass Effect Variables */
+    --glass-bg: rgba(24, 30, 44, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: 20px;
+
+    /* Text Colors */
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
   }
 
   * {
-    border-color: var(--color-border);
-    outline-color: color-mix(in oklch, var(--color-ring) 50%, transparent);
+    border-color: rgba(255, 255, 255, 0.1);
+    outline-color: color-mix(in oklch, #3b82f6 50%, transparent);
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    font-family: var(--font-sans);
+    background-color: #0f1219 !important;
+    color: #f8fafc !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Heading hierarchy — bold untuk semua heading */
+  /* Glass Utility Classes */
+  .glass-light {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass-solid {
+    background: #1a202c;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .glass-card {
+    background: rgba(24, 30, 44, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Apple Gradient Utility Classes */
+  .text-apple-gradient {
+    background: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bg-apple-gradient {
+    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+  }
+
+  /* Heading Hierarchy — Plus Jakarta Sans Natural Spacing */
   h1 {
-    font-family: var(--font-sans);
-    font-weight: 700;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 800;
+    line-height: 1.15;
   }
   h2 {
-    font-family: var(--font-sans);
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-weight: 700;
+    line-height: 1.25;
   }
-  h3 {
-    font-family: var(--font-sans);
+  h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-weight: 600;
-  }
-  h4, h5, h6 {
-    font-family: var(--font-sans);
-    font-weight: 600;
+    line-height: 1.35;
   }
 
-  /* Body text — regular */
+  /* Body Paragraphs — Maximum Legibility UI/UX */
   p {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-weight: 400;
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
-  /* Label, caption — medium */
   label, caption {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-weight: 500;
   }
   .maplibregl-popup-content {
@@ -140,7 +171,7 @@ html {
   }
 }
 
-/* Existing keyframes */
+/* Keyframe animations */
 @keyframes accordion-down {
   from { height: 0; }
   to { height: var(--radix-accordion-content-height); }
@@ -156,7 +187,6 @@ html {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* New keyframes */
 @keyframes slide-up {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -184,6 +214,6 @@ html {
 }
 
 @keyframes pulse-ring {
-  from { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
-  to { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+  from { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  to { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
 }

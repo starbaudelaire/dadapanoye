@@ -1,72 +1,89 @@
 import Link from 'next/link';
-import { Map, ShoppingBag, Images, ArrowRight } from 'lucide-react';
+import { Map, ShoppingBag, Images, ArrowUpRight } from 'lucide-react';
+import { GlassCard, GlassCardContent } from '@/components/ui/glass-card';
+import { GlassBadge } from '@/components/ui/glass-badge';
 
 const highlights = [
   {
-    icon: <Map className="h-6 w-6 text-brand-600" />,
-    iconBg: 'from-brand-50 to-brand-100',
-    title: 'Peta Wilayah',
-    desc: 'Lihat peta administrasi dan peta kebencanaan Padukuhan Dadapan.',
+    icon: <Map className="h-5 w-5 text-blue-400" />,
+    title: 'Peta Wilayah & Kebencanaan',
+    desc: 'Pemetaan tata ruang administrasi, batas wilayah RT/Kukuban, serta titik kumpul evakuasi bencana.',
     href: '/peta',
+    badge: 'Interaktif & GIS',
+    subLabel: 'Spasial Wilayah',
   },
   {
-    icon: <ShoppingBag className="h-6 w-6 text-earth-500" />,
-    iconBg: 'from-earth-50 to-earth-100',
-    title: 'Katalog UMKM',
-    desc: 'Temukan produk dan usaha lokal unggulan warga Dadapan.',
+    icon: <ShoppingBag className="h-5 w-5 text-blue-400" />,
+    title: 'Katalog UMKM Lokal',
+    desc: 'Direktori komprehensif usaha warga, produk olahan, kerajinan tangan, dan kontak langsung pembuat.',
     href: '/umkm',
+    badge: 'Ekonomi Warga',
+    subLabel: 'Direktori Produk',
   },
   {
-    icon: <Images className="h-6 w-6 text-brand-600" />,
-    iconBg: 'from-brand-50 to-brand-100',
-    title: 'Galeri KKN',
-    desc: 'Dokumentasi kegiatan Tim KKN UPNYK Kelompok 84.021.',
+    icon: <Images className="h-5 w-5 text-blue-400" />,
+    title: 'Galeri Kegiatan KKN',
+    desc: 'Dokumentasi visual rangkaian program pengabdian masyarakat Tim KKN UPNYK 84.021.',
     href: '/galeri',
+    badge: 'Dokumentasi',
+    subLabel: 'Pengabdian 2026',
   },
 ];
 
 export default function HighlightCards() {
   return (
-    <section className="bg-brand-50/50 py-16 md:py-20">
-      <div className="container mx-auto px-4">
-        {/* Section header */}
-        <div className="text-center mb-12">
-          <span className="inline-flex items-center px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-medium mb-3">
-            🌿 Jelajahi Lebih Jauh
-          </span>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-brand-900 mb-2">
-            Jelajahi Dadapan
+    <section className="py-12 sm:py-16 lg:py-24 bg-[#0f1219] relative">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12 relative z-10">
+        {/* Section Header — Reference Layout */}
+        <div className="space-y-3 max-w-3xl">
+          <p className="text-xs font-semibold uppercase tracking-wider text-blue-400">
+            JELAJAHI PORTAL
+          </p>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#f8fafc] tracking-normal">
+            Layanan &amp; Fitur Utama Padukuhan
           </h2>
-          <p className="text-gray-500 text-sm">
-            Mulai dari sini untuk mengenal lebih dekat padukuhan kami.
+          <p className="text-[#94a3b8] text-base sm:text-lg font-normal leading-relaxed">
+            Akses cepat menuju peta administrasi spasial, katalog usaha warga, dan galeri dokumentasi kegiatan.
           </p>
         </div>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* 3-Column Card Grid — Reference Layout Pattern */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {highlights.map((item) => (
-            <Link
-              key={item.title}
-              href={item.href}
-              className="group relative bg-white rounded-2xl p-6 md:p-8 border border-gray-100/80 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-gradient-to-r after:from-brand-400 after:to-brand-600 after:scale-x-0 after:group-hover:scale-x-100 after:transition-transform after:duration-300 after:origin-left"
-            >
-              {/* Icon */}
-              <div
-                className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.iconBg} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}
-              >
-                {item.icon}
-              </div>
+            <Link key={item.title} href={item.href} className="group block cursor-pointer">
+              <GlassCard className="h-full bg-[#181f2e]/85 border border-white/10 hover:border-blue-400/40 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between p-0">
+                <GlassCardContent className="p-6 space-y-4 flex flex-col justify-between h-full">
+                  <div className="space-y-4">
+                    {/* Top Row: Icon Box & Badge */}
+                    <div className="flex items-center justify-between">
+                      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-400/30 flex items-center justify-center group-hover:scale-105 transition-transform shadow-md">
+                        {item.icon}
+                      </div>
+                      <GlassBadge variant="accent">
+                        {item.badge}
+                      </GlassBadge>
+                    </div>
 
-              {/* Title with arrow */}
-              <h3 className="font-semibold text-gray-800 group-hover:text-brand-700 text-lg mb-2 transition-colors">
-                {item.title}
-                <ArrowRight className="inline h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ml-1" />
-              </h3>
+                    {/* Title & Description */}
+                    <div className="space-y-2">
+                      <h3 className="font-bold text-[#f8fafc] text-xl group-hover:text-blue-400 transition-colors leading-snug">
+                        {item.title}
+                      </h3>
+                      <p className="text-[#94a3b8] text-sm leading-relaxed font-normal">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
 
-              {/* Description */}
-              <p className="text-gray-500 text-sm leading-relaxed">
-                {item.desc}
-              </p>
+                  {/* Card Bottom Row — Reference Pattern */}
+                  <div className="flex items-center justify-between pt-4 border-t border-white/10 mt-4">
+                    <span className="text-xs font-semibold text-[#64748b]">{item.subLabel}</span>
+                    <div className="w-8 h-8 rounded-full bg-[#242c3d] border border-white/10 group-hover:bg-blue-600 group-hover:border-blue-500 text-white flex items-center justify-center transition-all">
+                      <ArrowUpRight className="h-4 w-4" />
+                    </div>
+                  </div>
+                </GlassCardContent>
+              </GlassCard>
             </Link>
           ))}
         </div>

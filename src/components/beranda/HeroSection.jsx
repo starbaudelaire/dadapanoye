@@ -1,83 +1,52 @@
 import Link from 'next/link';
-import { ChevronDown } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
+import { GlassButton } from '@/components/ui/glass-button';
+import { GlassBadge } from '@/components/ui/glass-badge';
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden bg-brand-900">
-      {/* Background image */}
+    <section id="home" className="bg-[#0f1219] py-16 sm:py-24 lg:py-32 border-b border-white/10 relative overflow-hidden flex items-center justify-center min-h-[80vh]">
+      {/* Background image overlay */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15 pointer-events-none"
         style={{ backgroundImage: "url('/images/hero-desa.jpg')" }}
         aria-hidden="true"
       />
 
-      {/* Primary gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-brand-900/70 via-brand-900/40 to-brand-900/90" />
+      <div className="mx-auto flex h-full max-w-7xl flex-col items-center justify-center px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        {/* Hero Header */}
+        <div className="flex max-w-4xl flex-col items-center gap-6 self-center">
+          <GlassBadge variant="accent" className="px-4 py-1.5 text-xs sm:text-sm shadow-md">
+            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse mr-2" />
+            KKN UPNYK 84.021
+          </GlassBadge>
 
-      {/* Secondary directional overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-900/30 via-transparent to-brand-900/30" />
+          <h1 className="text-4xl font-extrabold leading-[1.15] text-[#f8fafc] sm:text-6xl lg:text-7xl tracking-normal text-balance">
+            Padukuhan <span className="bg-gradient-to-r from-white via-slate-100 to-blue-300 bg-clip-text text-transparent">Dadapan</span>
+          </h1>
 
-      {/* Decorative floating blobs */}
-      <div
-        className="absolute top-20 -left-20 w-72 h-72 rounded-full bg-brand-400/10 blur-3xl animate-float"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-32 -right-24 w-96 h-96 rounded-full bg-brand-400/10 blur-3xl animate-float"
-        style={{ animationDelay: '2s' }}
-        aria-hidden="true"
-      />
-      <div
-        className="absolute top-1/2 left-1/3 w-64 h-64 rounded-full bg-brand-400/10 blur-3xl animate-float"
-        style={{ animationDelay: '4s' }}
-        aria-hidden="true"
-      />
+          <p className="text-[#94a3b8] mx-auto max-w-2xl text-lg sm:text-xl font-normal leading-relaxed">
+            Pusat informasi publik, pemetaan wilayah, katalog usaha warga, serta dokumentasi kegiatan masyarakat Padukuhan Dadapan
+          </p>
 
-      {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 max-w-3xl mx-auto">
-        <p
-          className="text-brand-300 text-sm font-medium uppercase tracking-widest mb-4 animate-fade-in"
-        >
-          Portal Resmi
-        </p>
-
-        <h1
-          className="font-serif text-5xl md:text-7xl font-bold leading-tight mb-5 animate-slide-up bg-gradient-to-r from-white via-brand-200 to-white bg-clip-text text-transparent"
-        >
-          Padukuhan Dadapan
-        </h1>
-
-        <p
-          className="text-brand-100/90 text-base md:text-lg leading-relaxed mb-10 animate-fade-in"
-          style={{ animationDelay: '0.3s' }}
-        >
-          Kalurahan Timbulharjo, Kapanewon Sewon, Kabupaten Bantul,
-          <br className="hidden md:block" />
-          Daerah Istimewa Yogyakarta.
-        </p>
-
-        <div
-          className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in"
-          style={{ animationDelay: '0.5s' }}
-        >
-          <Link
-            href="/profil#sejarah"
-            className="px-8 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-400 text-white font-semibold transition-all hover:shadow-lg hover:shadow-brand-500/25 hover:-translate-y-0.5"
-          >
-            Kenali Kami
-          </Link>
-          <Link
-            href="/umkm"
-            className="px-8 py-3.5 rounded-xl border-2 border-white/30 hover:bg-white/10 hover:border-white/50 text-white font-semibold transition-all hover:-translate-y-0.5"
-          >
-            Lihat Katalog UMKM
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 pt-4 max-sm:w-full">
+            <GlassButton variant="primary" size="lg" asChild className="px-8 text-base shadow-xl">
+              <Link href="/profil#sejarah">
+                Jelajahi Profil <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </GlassButton>
+            <GlassButton variant="outline" size="lg" asChild className="px-8 text-base">
+              <Link href="/umkm">
+                Katalog UMKM
+              </Link>
+            </GlassButton>
+          </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce-gentle">
-        <ChevronDown className="h-6 w-6 text-white/60" />
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 opacity-70 hover:opacity-100 transition-opacity">
+        <ChevronDown className="h-6 w-6 text-blue-400 animate-bounce-gentle" />
       </div>
     </section>
   );
