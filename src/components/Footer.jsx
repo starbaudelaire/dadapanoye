@@ -14,7 +14,7 @@ export default function Footer() {
           {/* Left Column: Brand Info */}
           <div className="space-y-2 max-w-sm">
             <Link href="/" className="inline-block group">
-              <span className="font-extrabold text-xl bg-gradient-to-r from-white via-slate-100 to-blue-200 bg-clip-text text-transparent">
+              <span className="font-extrabold text-xl text-logo-gradient">
                 Padukuhan Dadapan
               </span>
             </Link>

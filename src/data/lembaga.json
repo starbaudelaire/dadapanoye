@@ -1,18 +1,24 @@
 {
-  "pkk": {
-    "ketua": "Nama Ketua PKK",
+  "pilah_sampah": {
+    "ketua": "Bapak Asrobi & Ibu Sri Winarsih",
     "anggota": []
   },
   "karang_taruna": {
-    "ketua": "Nama Ketua Karang Taruna",
+    "ketua": "Dhafa",
     "anggota": []
   },
   "posyandu": {
-    "ketua": "Nama Ketua Posyandu",
-    "jadwal": "Setiap tanggal X"
+    "pembina": "Ibu Maulinda Irawati",
+    "posyandu_bayi": "Ibu Sri Winarsih",
+    "posyandu_lansia": "Ibu Sulastri Joko",
+    "sekretaris": "Ibu Indra Setianingsih",
+    "jadwal": "Minggu Sebelum Rapat RT"
   },
-  "kwt": {
-    "ketua": "Nama Ketua KWT",
-    "anggota": []
+  "paguyuban_rt": {
+    "ketua": "Bapak Heri",
+    "bendahara": "Bapak Paimin",
+    "sekretaris": "Bapak Mujirin",
+    "kegiatan": "Rapat RT Padukuhan (Setiap Malam Selasa PON)"
   }
 }
+  

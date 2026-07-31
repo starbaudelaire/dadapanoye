@@ -82,6 +82,24 @@ export default function UmkmMapClient({ umkmList }) {
     (u) => u.lat && u.lng && !isNaN(u.lat) && !isNaN(u.lng)
   );
 
+  const handleNextUmkm = () => {
+    if (!selectedDialog) return;
+    const currentIndex = validUmkm.findIndex((item) => item.id === selectedDialog.id);
+    if (currentIndex !== -1 && validUmkm.length > 1) {
+      const nextIndex = (currentIndex + 1) % validUmkm.length;
+      setSelectedDialog(validUmkm[nextIndex]);
+    }
+  };
+
+  const handlePrevUmkm = () => {
+    if (!selectedDialog) return;
+    const currentIndex = validUmkm.findIndex((item) => item.id === selectedDialog.id);
+    if (currentIndex !== -1 && validUmkm.length > 1) {
+      const prevIndex = (currentIndex - 1 + validUmkm.length) % validUmkm.length;
+      setSelectedDialog(validUmkm[prevIndex]);
+    }
+  };
+
   // Initial center calculation
   const initialCenter = validUmkm.length > 0
     ? [
@@ -370,7 +388,6 @@ export default function UmkmMapClient({ umkmList }) {
           ref={mapRef}
           center={initialCenter}
           zoom={13.5}
-          theme="dark"
           styles={
             selectedStyle
               ? { light: selectedStyle, dark: selectedStyle }
@@ -432,9 +449,9 @@ export default function UmkmMapClient({ umkmList }) {
               {activePopupId === umkm.id && (
                 <MarkerPopup className="w-56 p-0 overflow-hidden bg-[#141417] border border-white/10 text-[#fafafa] rounded-2xl shadow-2xl">
                   <div className="relative h-24 w-full bg-[#27272a] overflow-hidden">
-                    {umkm.foto ? (
+                    {umkm.foto || umkm.thumbnail ? (
                       <img
-                        src={umkm.foto}
+                        src={umkm.foto || umkm.thumbnail}
                         alt={umkm.nama}
                         className="w-full h-full object-cover"
                       />
@@ -492,6 +509,8 @@ export default function UmkmMapClient({ umkmList }) {
         umkm={selectedDialog}
         open={!!selectedDialog}
         onClose={() => setSelectedDialog(null)}
+        onNext={validUmkm.length > 1 ? handleNextUmkm : undefined}
+        onPrevious={validUmkm.length > 1 ? handlePrevUmkm : undefined}
       />
     </>
   );

@@ -63,7 +63,7 @@ export default function Profil({ profil = {}, lembaga = {} }) {
               <GlassTabsList className="w-full max-w-lg">
                 <GlassTabsTrigger value="sejarah" className="flex-1 group">
                   <BookOpen className="h-4 w-4 flex-shrink-0" />
-                  <span className="hidden group-data-[state=active]:inline sm:inline ml-1.5 font-semibold">Sejarah</span>
+                  <span className="hidden group-data-[state=active]:inline sm:inline ml-1.5 font-semibold">Profil</span>
                 </GlassTabsTrigger>
                 <GlassTabsTrigger value="pamong" className="flex-1 group">
                   <Users className="h-4 w-4 flex-shrink-0" />
@@ -87,7 +87,7 @@ export default function Profil({ profil = {}, lembaga = {} }) {
             <GlassTabsContent value="pamong">
               <PamongSection
                 pamong={profil.pamong || []}
-                kukuban={profil.kukuban || []}
+                rtList={profil.rt || []}
               />
             </GlassTabsContent>
 

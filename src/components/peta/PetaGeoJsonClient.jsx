@@ -116,7 +116,6 @@ export default function PetaGeoJsonClient() {
           ref={mapRef}
           center={center}
           zoom={14.6}
-          theme="dark"
           styles={
             styles[styleKey]
               ? { light: styles[styleKey], dark: styles[styleKey] }

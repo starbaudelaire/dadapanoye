@@ -16,6 +16,18 @@ export default function Document() {
         />
       </Head>
       <body>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              const theme = localStorage.getItem('theme') || 'dark';
+              if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+              } else {
+                document.documentElement.classList.remove('dark');
+              }
+            })();
+          `
+        }} />
         <Main />
         <NextScript />
       </body>

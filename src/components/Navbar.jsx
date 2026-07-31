@@ -1,21 +1,13 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Spinner } from '@/components/ui/spinner';
 
 const navLinks = [
   { href: '/', label: 'Beranda' },
-  {
-    href: '/profil',
-    label: 'Profil',
-    children: [
-      { href: '/profil#sejarah', label: 'Sejarah & Visi Misi' },
-      { href: '/profil#pamong', label: 'Pemerintahan & Pamong' },
-      { href: '/profil#lembaga', label: 'Lembaga Desa' },
-    ],
-  },
+  { href: '/profil', label: 'Profil' },
   { href: '/peta', label: 'Peta Wilayah' },
   { href: '/umkm', label: 'Katalog UMKM' },
   { href: '/galeri', label: 'Galeri KKN' },
@@ -27,6 +19,31 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
+  const [theme, setTheme] = useState('dark');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+    // Apply theme on mount
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme);
+    localStorage.setItem('theme', nextTheme);
+    if (nextTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -72,7 +89,7 @@ export default function Navbar() {
         {/* Logo — Clean Minimal Text Logo */}
         <Link href="/" className="flex flex-col group">
           <div className="flex items-center gap-2">
-            <span className="font-extrabold text-base sm:text-lg bg-gradient-to-r from-white via-slate-100 to-blue-200 bg-clip-text text-transparent leading-none">
+            <span className="font-extrabold text-base sm:text-lg text-logo-gradient leading-none">
               Padukuhan Dadapan
             </span>
             {isNavigating && <Spinner size="sm" className="ml-1" />}
@@ -140,16 +157,45 @@ export default function Navbar() {
               </Link>
             );
           })}
+          
+          {/* Theme Toggle Button (Desktop) */}
+          <button
+            onClick={toggleTheme}
+            className="p-2.5 rounded-xl border border-white/10 hover:border-white/20 text-[#f8fafc] hover:text-white bg-[#242c3d]/40 hover:bg-[#242c3d]/80 transition-all cursor-pointer flex items-center justify-center shrink-0 ml-3"
+            aria-label="Toggle theme"
+          >
+            {mounted ? (
+              theme === 'dark' ? <Sun className="h-4 w-4 text-amber-400" /> : <Moon className="h-4 w-4 text-indigo-400" />
+            ) : (
+              <div className="h-4 w-4 animate-pulse rounded-full bg-white/20" />
+            )}
+          </button>
         </nav>
 
-        {/* Mobile Hamburger Button */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden p-2.5 rounded-xl bg-[#242c3d]/80 backdrop-blur-xl border border-white/10 text-white hover:bg-[#2d374d] transition-colors"
-          aria-label="Toggle navigation menu"
-        >
-          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        {/* Mobile Controls (Hamburger & Theme Switch) */}
+        <div className="flex items-center gap-2 lg:hidden">
+          {/* Theme Toggle Button (Mobile) */}
+          <button
+            onClick={toggleTheme}
+            className="p-2.5 rounded-xl bg-[#242c3d]/85 backdrop-blur-xl border border-white/10 text-white hover:bg-[#2d374d] transition-colors cursor-pointer flex items-center justify-center"
+            aria-label="Toggle theme"
+          >
+            {mounted ? (
+              theme === 'dark' ? <Sun className="h-4 w-4 text-amber-400" /> : <Moon className="h-4 w-4 text-indigo-400" />
+            ) : (
+              <div className="h-4 w-4 animate-pulse rounded-full bg-white/20" />
+            )}
+          </button>
+
+          {/* Hamburger Button */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="p-2.5 rounded-xl bg-[#242c3d]/80 backdrop-blur-xl border border-white/10 text-white hover:bg-[#2d374d] transition-colors"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Dropdown — Apple Frosted Glass */}

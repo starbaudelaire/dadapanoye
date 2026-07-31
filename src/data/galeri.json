@@ -1,50 +1,154 @@
 [
   {
     "id": 1,
-    "judul": "Pembukaan KKN & Penerimaan Pamong",
+    "judul": "Kerja Bakti Mengecat Gapura Padukuhan Dadapan",
     "kategori": "Sosial",
-    "tanggal": "15 Juli 2026",
-    "foto": "/images/galeri/placeholder.jpg",
-    "keterangan": "Acara penerimaan resmi mahasiswa KKN UPN 'Veteran' Yogyakarta oleh Pak Dukuh Dadapan dan jajaran RT."
+    "tanggal": "5 Juli 2026",
+    "foto": "/images/gallery/kerja-bakti-gapura.webp",
+    "keterangan": "Kegiatan kerja bakti bersama warga untuk mengecat kembali gapura Padukuhan Dadapan sebagai upaya memperindah lingkungan serta meningkatkan semangat gotong royong masyarakat."
   },
   {
     "id": 2,
-    "judul": "Bimbingan Belajar & Pojok Baca Anak",
-    "kategori": "Pendidikan",
-    "tanggal": "18 Juli 2026",
-    "foto": "/images/galeri/placeholder.jpg",
-    "keterangan": "Program pendampingan belajar dan donasi buku bacaan gratis untuk anak-anak Padukuhan Dadapan."
+    "judul": "Pendampingan Posyandu (Lansia dan Anak-anak)",
+    "kategori": "Kesehatan",
+    "tanggal": "6 Juli 2026",
+    "foto": "/images/gallery/posyandu.webp",
+    "keterangan": "Kegiatan pendampingan pelayanan Posyandu dengan membantu proses administrasi, penimbangan, pengukuran, serta pelayanan kesehatan bagi balita dan lansia bersama kader Posyandu."
   },
   {
     "id": 3,
-    "judul": "Pemeriksaan Kesehatan & Posyandu Balita",
-    "kategori": "Kesehatan",
-    "tanggal": "20 Juli 2026",
-    "foto": "/images/galeri/placeholder.jpg",
-    "keterangan": "Pendampingan kegiatan rutin Posyandu balita dan lansia bersama kader kesehatan Dadapan."
+    "judul": "Mengajar TPQ",
+    "kategori": "Pendidikan",
+    "tanggal": "7 Juli 2026",
+    "foto": "/images/gallery/mengajar-tpq.webp",
+    "keterangan": "Program kerja Mengajar TPQ merupakan kegiatan pendampingan pembelajaran keagamaan bagi santri di Yayasan Nurul Dholam. Mahasiswa KKN membantu ustaz dan ustazah dalam mendampingi santri membaca Al-Qur'an dan Iqra, menghafalkan doa-doa harian, serta memberikan bimbingan mengenai dasar-dasar ilmu agama Islam. Kegiatan ini bertujuan mendukung proses pembelajaran agar berlangsung dengan lebih efektif dan menyenangkan."
   },
   {
     "id": 4,
-    "judul": "Digitalisasi & Pelatihan Foto Produk UMKM",
-    "kategori": "Ekonomi",
-    "tanggal": "22 Juli 2026",
-    "foto": "/images/galeri/placeholder.jpg",
-    "keterangan": "Pelatihan pemotretan produk dan pemetaan katalog digital lokasi usaha warga Dadapan."
+    "judul": "Membantu Pilah Sampah",
+    "kategori": "Lingkungan",
+    "tanggal": "11 Juli 2026",
+    "foto": "/images/gallery/pilah-sampah.webp",
+    "keterangan": "Kegiatan pendampingan masyarakat dalam memilah sampah organik dan anorganik sebagai upaya meningkatkan kesadaran terhadap pengelolaan sampah sejak dari sumbernya."
   },
   {
     "id": 5,
-    "judul": "Kerja Bakti & Penanaman Bibit Tanaman",
-    "kategori": "Lingkungan",
-    "tanggal": "25 Juli 2026",
-    "foto": "/images/galeri/placeholder.jpg",
-    "keterangan": "Aksi hijau bersama warga untuk penghijauan pekarangan dan kebersihan lingkungan RT."
+    "judul": "Workshop Pencegahan Bullying di Lingkungan Rumah",
+    "kategori": "Pendidikan",
+    "tanggal": "13 Juli 2026",
+    "foto": "/images/gallery/workshop-bullying.webp",
+    "keterangan": "Workshop edukatif bagi anak-anak mengenai pengertian, dampak, dan cara mencegah bullying di lingkungan rumah melalui pembelajaran interaktif dan diskusi kelompok."
   },
   {
     "id": 6,
-    "judul": "Sosialisasi Pemilahan Sampah Rumah Tangga",
+    "judul": "Claypreneur Kids: Belajar Kreatif dan Produktif dengan Art Clay",
+    "kategori": "Ekonomi",
+    "tanggal": "13 Juli 2026",
+    "foto": "/images/gallery/claypreneur-kids.webp",
+    "keterangan": "Pelatihan pembuatan kerajinan menggunakan art clay untuk mengembangkan kreativitas, keterampilan motorik halus, serta mengenalkan konsep ekonomi kreatif kepada anak-anak."
+  },
+  {
+    "id": 7,
+    "judul": "SIGAP: Siaga Gempa Anak Pintar",
+    "kategori": "Pendidikan",
+    "tanggal": "14 Juli 2026",
+    "foto": "/images/gallery/sigap.webp",
+    "keterangan": "Program edukasi mitigasi bencana gempa bumi bagi siswa sekolah dasar melalui penyampaian materi, permainan edukatif, dan simulasi evakuasi agar peserta lebih siap menghadapi bencana."
+  },
+  {
+    "id": 8,
+    "judul": "GEMAS: Gemar Menabung Sejak Dini",
+    "kategori": "Pendidikan",
+    "tanggal": "14 Juli 2026",
+    "foto": "/images/gallery/gemas.webp",
+    "keterangan": "Program literasi keuangan yang mengenalkan pentingnya menabung, membedakan kebutuhan dan keinginan, serta membiasakan pengelolaan uang saku sejak usia sekolah dasar."
+  },
+  {
+    "id": 9,
+    "judul": "Sosialisasi Pengolahan Sampah Organik dengan Composting Bag",
+    "kategori": "Lingkungan",
+    "tanggal": "15 Juli 2026",
+    "foto": "/images/gallery/composting-bag.webp",
+    "keterangan": "Sosialisasi mengenai pengolahan sampah organik rumah tangga menjadi kompos menggunakan composting bag untuk mengurangi limbah organik dan mendukung terciptanya lingkungan yang lebih bersih."
+  },
+  {
+    "id": 10,
+    "judul": "Guard Garlic Spray",
+    "kategori": "Lingkungan",
+    "tanggal": "15 Juli 2026",
+    "foto": "/images/gallery/guard-garlic-spray.webp",
+    "keterangan": "Pelatihan pemanfaatan limbah kulit bawang menjadi Guard Garlic Spray sebagai produk ramah lingkungan yang bernilai guna sekaligus mengurangi limbah organik rumah tangga."
+  },
+  {
+    "id": 11,
+    "judul": "Donor Darah dan Pemeriksaan Kesehatan Gratis",
+    "kategori": "Kesehatan",
+    "tanggal": "19 Juli 2026",
+    "foto": "/images/gallery/donor-darah.webp",
+    "keterangan": "Kegiatan donor darah yang disertai pemeriksaan kesehatan dasar dan edukasi Perilaku Hidup Bersih dan Sehat (PHBS) bekerja sama dengan PMI dan Puskesmas."
+  },
+  {
+    "id": 12,
+    "judul": "Senam Bersama Ibu-Ibu (Pertama)",
+    "kategori": "Kesehatan",
+    "tanggal": "19 Juli 2026",
+    "foto": "/images/gallery/senam-1.webp",
+    "keterangan": "Kegiatan senam bersama ibu-ibu sebagai upaya meningkatkan kebugaran jasmani, mempererat kebersamaan, serta mendorong penerapan pola hidup sehat di masyarakat."
+  },
+  {
+    "id": 13,
+    "judul": "Mbatik Daun",
+    "kategori": "Ekonomi",
+    "tanggal": "20 Juli 2026",
+    "foto": "/images/gallery/mbatik-daun.webp",
+    "keterangan": "Pelatihan pembuatan ecoprint menggunakan bahan alami berupa daun pada media kain sebagai upaya mengembangkan kreativitas dan keterampilan masyarakat melalui kerajinan ramah lingkungan."
+  },
+  {
+    "id": 14,
+    "judul": "Sosialisasi Pembuatan Gantungan Kunci dari Limbah Tutup Botol Plastik",
+    "kategori": "Lingkungan",
+    "tanggal": "20 Juli 2026",
+    "foto": "/images/gallery/gantungan-kunci-limbah.webp",
+    "keterangan": "Sosialisasi dan praktik pembuatan gantungan kunci dari limbah tutup botol plastik menggunakan metode hot press sebagai bentuk edukasi pengelolaan sampah yang bernilai ekonomi."
+  },
+  {
+    "id": 15,
+    "judul": "Perayaan Hari Anak Nasional",
+    "kategori": "Sosial",
+    "tanggal": "25 Juli 2026",
+    "foto": "/images/gallery/hari-anak-nasional.webp",
+    "keterangan": "Kegiatan peringatan Hari Anak Nasional melalui lomba cerdas cermat dan pilah sampah yang bertujuan meningkatkan pengetahuan, kreativitas, serta kepedulian anak terhadap lingkungan."
+  },
+  {
+    "id": 16,
+    "judul": "Expo KKN Kelompok 21, 22, 23, dan 24",
+    "kategori": "Sosial",
+    "tanggal": "26 Juli 2026",
+    "foto": "/images/gallery/expo-kkn.webp",
+    "keterangan": "Kegiatan expo yang menampilkan pemaparan hasil pelaksanaan program kerja KKN dari Kelompok 21, 22, 23, dan 24. Kegiatan ini juga dimeriahkan dengan lomba mewarnai bagi anak usia 5–8 tahun yang diikuti peserta dari Padukuhan Dadapan, Tembi, Balong, Gabusan, dan wilayah Kalurahan Timbulharjo."
+  },
+  {
+    "id": 17,
+    "judul": "Senam Bersama Ibu-Ibu (Kedua)",
+    "kategori": "Kesehatan",
+    "tanggal": "26 Juli 2026",
+    "foto": "/images/gallery/senam-2.webp",
+    "keterangan": "Kegiatan senam bersama sebagai lanjutan program kesehatan masyarakat untuk membiasakan aktivitas fisik secara rutin sekaligus mempererat kebersamaan warga."
+  },
+  {
+    "id": 18,
+    "judul": "Revitalisasi Plang Padukuhan",
     "kategori": "Lingkungan",
     "tanggal": "28 Juli 2026",
-    "foto": "/images/galeri/placeholder.jpg",
-    "keterangan": "Edukasi pengolahan sampah organik dan pemilahan sampah anorganik skala rumah tangga."
+    "foto": "/images/gallery/revitalisasi-plang.webp",
+    "keterangan": "Kegiatan pembuatan dan pemasangan plang petunjuk serta batas wilayah sebagai media informasi yang memudahkan masyarakat dan pengunjung dalam mengenali lokasi di Padukuhan Dadapan."
+  },
+  {
+    "id": 19,
+    "judul": "Digitalisasi UMKM: Pemetaan Lokasi Digital, Fasilitasi QRIS, dan Pembuatan Media Promosi Usaha",
+    "kategori": "Ekonomi",
+    "tanggal": "30 Juli 2026",
+    "foto": "/images/gallery/digitalisasi-umkm.webp",
+    "keterangan": "Program pendampingan UMKM melalui pembuatan titik lokasi digital di Google Maps, fasilitasi penggunaan QRIS, serta penyusunan media promosi untuk meningkatkan visibilitas usaha dan memperluas jangkauan pemasaran."
   }
 ]

@@ -22,7 +22,7 @@ export default function HeroSection() {
           </GlassBadge>
 
           <h1 className="text-4xl font-extrabold leading-[1.15] text-[#f8fafc] sm:text-6xl lg:text-7xl tracking-normal text-balance">
-            Padukuhan <span className="bg-gradient-to-r from-white via-slate-100 to-blue-300 bg-clip-text text-transparent">Dadapan</span>
+            Padukuhan <span className="text-title-gradient">Dadapan</span>
           </h1>
 
           <p className="text-[#94a3b8] mx-auto max-w-2xl text-lg sm:text-xl font-normal leading-relaxed">

@@ -19,13 +19,17 @@ import { GlassCard, GlassCardContent } from '@/components/ui/glass-card';
 import { GlassBadge } from '@/components/ui/glass-badge';
 import { Spinner } from '@/components/ui/spinner';
 
-const CATEGORIES = ['Semua', 'Kuliner', 'Peternakan', 'Jasa & Konveksi', 'Seni & Kerajinan', 'Mebel & Kayu'];
-
 export default function KatalogUmkm({ umkmList = umkmData }) {
   const [selected, setSelected] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('Semua');
   const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'list'
+
+  // Extract unique categories dynamically from the data
+  const categories = [
+    'Semua',
+    ...Array.from(new Set(umkmList.map((item) => item.kategori).filter(Boolean))).sort()
+  ];
 
   // Filter UMKM list by search query and category
   const filteredUmkm = umkmList.filter((item) => {
@@ -36,6 +40,24 @@ export default function KatalogUmkm({ umkmList = umkmData }) {
       item.deskripsi.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  const handleNextUmkm = () => {
+    if (!selected) return;
+    const currentIndex = filteredUmkm.findIndex((item) => item.id === selected.id);
+    if (currentIndex !== -1 && filteredUmkm.length > 1) {
+      const nextIndex = (currentIndex + 1) % filteredUmkm.length;
+      setSelected(filteredUmkm[nextIndex]);
+    }
+  };
+
+  const handlePrevUmkm = () => {
+    if (!selected) return;
+    const currentIndex = filteredUmkm.findIndex((item) => item.id === selected.id);
+    if (currentIndex !== -1 && filteredUmkm.length > 1) {
+      const prevIndex = (currentIndex - 1 + filteredUmkm.length) % filteredUmkm.length;
+      setSelected(filteredUmkm[prevIndex]);
+    }
+  };
 
   return (
     <>
@@ -70,6 +92,31 @@ export default function KatalogUmkm({ umkmList = umkmData }) {
 
             <div className="p-2 rounded-3xl bg-[#181f2e]/85 backdrop-blur-2xl border border-white/10 shadow-2xl overflow-hidden">
               <UmkmMap umkmList={umkmList} />
+            </div>
+          </div>
+
+          {/* Video Dokumenter / Showcase UMKM */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#181f2e]/85 backdrop-blur-2xl border border-white/10 p-6 sm:p-8 rounded-3xl shadow-2xl">
+            <div className="lg:col-span-5 space-y-4">
+              <span className="text-xs font-semibold uppercase tracking-wider text-blue-400">
+                DOKUMENTASI USAHA LOKAL
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#f8fafc]">
+                Profil &amp; Potensi UMKM Dadapan
+              </h2>
+              <p className="text-sm text-[#94a3b8] leading-relaxed text-justify font-normal">
+                Saksikan liputan eksklusif mengenai usaha mikro, kecil, dan menengah di Padukuhan Dadapan. Temukan kisah inspiratif perjuangan pelaku usaha lokal dalam menciptakan produk olahan makanan kreatif, kerajinan tangan khas, dan jasa berkualitas tinggi.
+              </p>
+            </div>
+            <div className="lg:col-span-7 w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-lg relative group bg-[#0f1219]">
+              <iframe
+                src="https://www.youtube.com/embed/om-ZbJOxypk"
+                title="Video Profil UMKM Padukuhan Dadapan"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              ></iframe>
             </div>
           </div>
 
@@ -135,7 +182,7 @@ export default function KatalogUmkm({ umkmList = umkmData }) {
 
             {/* Category Filter Pills Bar */}
             <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-              {CATEGORIES.map((cat) => {
+              {categories.map((cat) => {
                 const isActive = selectedCategory === cat;
                 return (
                   <button
@@ -175,9 +222,9 @@ export default function KatalogUmkm({ umkmList = umkmData }) {
                       <div className="space-y-4">
                         {/* Thumbnail Image Container */}
                         <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-[#242c3d]">
-                          {umkm.foto && umkm.foto !== '/images/umkm/placeholder.jpg' ? (
+                          {(umkm.foto || umkm.thumbnail) && (umkm.foto || umkm.thumbnail) !== '/images/umkm/placeholder.jpg' ? (
                             <img
-                              src={umkm.foto}
+                              src={umkm.foto || umkm.thumbnail}
                               alt={umkm.nama}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             />
@@ -204,11 +251,11 @@ export default function KatalogUmkm({ umkmList = umkmData }) {
                             <span className="text-blue-400 font-medium">{umkm.jenisUsaha}</span>
                           </div>
 
-                          <h3 className="font-bold text-[#f8fafc] text-xl group-hover:text-blue-400 transition-colors leading-snug">
+                          <h3 className="font-bold text-[#f8fafc] text-xl group-hover:text-blue-400 transition-colors leading-snug line-clamp-2 h-14">
                             {umkm.nama}
                           </h3>
 
-                          <p className="text-[#94a3b8] text-sm leading-relaxed font-normal line-clamp-2">
+                          <p className="text-[#94a3b8] text-sm leading-relaxed font-normal line-clamp-2 h-10 text-justify">
                             {umkm.deskripsi}
                           </p>
                         </div>
@@ -279,6 +326,8 @@ export default function KatalogUmkm({ umkmList = umkmData }) {
         umkm={selected}
         open={!!selected}
         onClose={() => setSelected(null)}
+        onNext={filteredUmkm.length > 1 ? handleNextUmkm : undefined}
+        onPrevious={filteredUmkm.length > 1 ? handlePrevUmkm : undefined}
       />
     </>
   );

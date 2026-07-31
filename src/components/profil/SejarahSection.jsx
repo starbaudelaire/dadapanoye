@@ -25,18 +25,20 @@ export default function SejarahSection({ sejarah, visi, misi = [] }) {
                     </div>
                     <div>
                       <span className="text-xs font-semibold uppercase tracking-wider text-blue-400">
-                        ASAL USUL &amp; HISTORIS
+                        PROFIL &amp; GAMBARAN UMUM
                       </span>
                       <h2 className="text-xl sm:text-2xl font-bold text-[#f8fafc]">
-                        Sejarah Padukuhan
+                        Deskripsi Umum
                       </h2>
                     </div>
                   </div>
-                  <GlassBadge variant="accent">Warisan Budaya</GlassBadge>
+                  <GlassBadge variant="accent">Profil Wilayah</GlassBadge>
                 </div>
 
                 <div className="prose prose-invert max-w-none text-[#94a3b8] text-sm sm:text-base leading-relaxed font-normal space-y-4">
-                  <p>{sejarah}</p>
+                  {sejarah && sejarah.split('\n\n').map((para, idx) => (
+                    <p key={idx}>{para}</p>
+                  ))}
                 </div>
               </div>
 
@@ -101,6 +103,31 @@ export default function SejarahSection({ sejarah, visi, misi = [] }) {
                           </li>
                         ))}
                       </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem
+                    value="tradisi"
+                    className="rounded-2xl overflow-hidden border border-white/10 bg-[#242c3d]/60 px-5"
+                  >
+                    <AccordionTrigger className="font-semibold text-[#f8fafc] hover:no-underline hover:text-blue-400 py-4 text-sm">
+                      Tradisi &amp; Budaya Lokal
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-5 text-[#94a3b8] text-xs sm:text-sm leading-relaxed font-normal space-y-3">
+                      <p>
+                        Masyarakat Padukuhan Dadapan senantiasa merawat tradisi leluhur sebagai bagian dari identitas kultural dan ungkapan rasa syukur. Beberapa tradisi yang masih aktif dilaksanakan antara lain:
+                      </p>
+                      <ul className="list-disc pl-5 space-y-2">
+                        <li>
+                          <strong className="text-[#f8fafc]">Satu Suro:</strong> Peringatan tahun baru Jawa yang diisi dengan kegiatan doa bersama dan refleksi spiritual untuk keselamatan seluruh warga padukuhan.
+                        </li>
+                        <li>
+                          <strong className="text-[#f8fafc]">Wiwitan:</strong> Ritual syukur tradisional yang dilaksanakan menjelang musim panen padi. Acara ini biasanya dimeriahkan dengan makan bersama di area persawahan dan sering kali mengundang Bupati serta jajaran pejabat daerah sebagai bentuk pelestarian kebudayaan agraris.
+                        </li>
+                      </ul>
+                      <p className="pt-2 border-t border-white/5 text-[11px] text-[#64748b]">
+                        *Catatan Administrasi: Pembagian wilayah di Kalurahan Timbulharjo terbagi ke dalam sistem pembagian wilayah adat/administrasi yang disebut Kring.
+                      </p>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>

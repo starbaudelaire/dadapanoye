@@ -7,7 +7,7 @@ export default function StatCards({ statistik }) {
       icon: <Users className="h-5 w-5 text-blue-400" />,
       label: 'Jumlah Warga',
       value: statistik.total_jiwa.toLocaleString('id-ID'),
-      keterangan: 'Jiwa Terdata',
+      keterangan: `L: ${statistik.laki_laki || 0} • P: ${statistik.perempuan || 0} Jiwa`,
     },
     {
       icon: <Home className="h-5 w-5 text-blue-400" />,

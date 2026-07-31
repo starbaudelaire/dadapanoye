@@ -1,34 +1,65 @@
 {
-  "sejarah": "Padukuhan Dadapan merupakan salah satu padukuhan yang berada di Kalurahan Timbulharjo...",
-  "visi": "Terwujudnya Padukuhan Dadapan yang mandiri, sejahtera, dan berbudaya.",
+  "sejarah": "Padukuhan Dadapan merupakan salah satu padukuhan yang berada di Kalurahan Timbulharjo, Kapanewon Sewon, Kabupaten Bantul, Daerah Istimewa Yogyakarta. Secara administratif, Padukuhan Dadapan menjadi bagian dari Kalurahan Timbulharjo yang terdiri atas 16 padukuhan. Dalam sejarah pembentukannya, wilayah ini termasuk dalam Kring Dadapan bersama Padukuhan Tembi, Mriyan, dan Sewon. Berada di kawasan Sewon yang strategis, Padukuhan Dadapan memiliki lingkungan yang berkembang dengan perpaduan antara permukiman, aktivitas sosial masyarakat, serta berbagai potensi lokal yang terus tumbuh seiring perkembangan wilayah.\n\nMasyarakat Padukuhan Dadapan menjunjung tinggi nilai gotong royong, kebersamaan, dan partisipasi aktif dalam berbagai kegiatan kemasyarakatan, keagamaan, serta pemberdayaan warga. Beragam potensi di bidang UMKM, pendidikan, pelayanan masyarakat, dan kegiatan sosial terus dikembangkan untuk mendukung kesejahteraan masyarakat. Melalui semangat kolaborasi dan inovasi, Padukuhan Dadapan berkomitmen meningkatkan kualitas pelayanan publik serta mengembangkan potensi wilayah secara berkelanjutan. Website ini dihadirkan sebagai media informasi, komunikasi, dan publikasi yang menghubungkan pemerintah padukuhan dengan masyarakat maupun pihak luar yang ingin mengenal Padukuhan Dadapan lebih dekat.",
+  "visi": "Mewujudkan Padukuhan Dadapan sebagai lingkungan yang maju, harmonis, berdaya, dan informatif melalui penguatan partisipasi masyarakat serta pemanfaatan teknologi digital.",
   "misi": [
-    "Meningkatkan kualitas sumber daya manusia.",
-    "Mengembangkan potensi ekonomi lokal.",
-    "Memperkuat nilai gotong royong dan kebudayaan lokal."
+    "Meningkatkan kualitas pelayanan informasi kepada masyarakat.",
+    "Mendukung pengembangan potensi UMKM, pendidikan, dan kegiatan sosial kemasyarakatan.",
+    "Melestarikan budaya gotong royong serta memperkuat kebersamaan antarwarga.",
+    "Mengoptimalkan pemanfaatan media digital sebagai sarana publikasi, komunikasi, dan transparansi informasi.",
+    "Mendorong kolaborasi antara pemerintah padukuhan, masyarakat, dan berbagai pihak dalam pembangunan berkelanjutan."
   ],
   "statistik": {
-    "total_jiwa": 0,
-    "total_kk": 0,
-    "luas_wilayah": "0 Ha",
-    "sektor_utama": "Pertanian"
+    "total_jiwa": 1680,
+    "laki_laki": 844,
+    "perempuan": 836,
+    "total_kk": 522,
+    "jumlah_rt": 9,
+    "luas_wilayah": "58.75 Ha",
+    "sektor_utama": "UMKM, Pertanian, dan Perdagangan"
   },
   "pamong": [
     {
       "jabatan": "Dukuh",
-      "nama": "Nama Dukuh",
-      "foto": "/images/pamong/dukuh.jpg"
+      "nama": "Bapak Hastho Birowo",
+      "foto": "/images/pamong/dukuh.webp"
     }
   ],
-  "kukuban": [
+  "rt": [
     {
-      "nama": "Dadapan Lor",
-      "ketua": "Nama Ketua",
-      "rt": ["RT 01", "RT 02"]
+      "nomor": "RT 01",
+      "nama": "Bapak Heri Saryanto"
     },
     {
-      "nama": "Dadapan Kidul",
-      "ketua": "Nama Ketua",
-      "rt": ["RT 03", "RT 04"]
+      "nomor": "RT 02",
+      "nama": "Bapak Paimin"
+    },
+    {
+      "nomor": "RT 03",
+      "nama": "Bapak Saikun"
+    },
+    {
+      "nomor": "RT 04",
+      "nama": "Bapak Haji Mugi"
+    },
+    {
+      "nomor": "RT 05",
+      "nama": "Bapak Mujirin"
+    },
+    {
+      "nomor": "RT 06",
+      "nama": "Bapak Agus Riyanto"
+    },
+    {
+      "nomor": "RT 07",
+      "nama": "Bapak Edi"
+    },
+    {
+      "nomor": "RT 08",
+      "nama": "Bapak Tedy"
+    },
+    {
+      "nomor": "RT 09",
+      "nama": "Bapak Kliwon"
     }
   ]
 }
