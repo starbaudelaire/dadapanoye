@@ -1,5 +1,5 @@
 "use client";;
-import MapLibreGL, { supported } from "maplibre-gl";
+import MapLibreGL from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {
   createContext,
@@ -76,10 +76,27 @@ function getSystemTheme() {
     : "light";
 }
 
+function isWebGLSupported() {
+  if (typeof window === "undefined" || typeof document === "undefined") {
+    return true;
+  }
+  try {
+    const canvas = document.createElement("canvas");
+    return !!(
+      window.WebGLRenderingContext &&
+      (canvas.getContext("webgl") || canvas.getContext("experimental-webgl"))
+    );
+  } catch (e) {
+    return false;
+  }
+}
+
 function useResolvedTheme(themeProp) {
-  const [detectedTheme, setDetectedTheme] = useState(() => getDocumentTheme() ?? getSystemTheme());
+  const [detectedTheme, setDetectedTheme] = useState("light");
 
   useEffect(() => {
+    setDetectedTheme(getDocumentTheme() ?? getSystemTheme());
+
     if (themeProp) return; // Skip detection if theme is provided via prop
 
     // Watch for document class changes (e.g., next-themes toggling dark class)
@@ -207,7 +224,7 @@ const Map = forwardRef(function Map(
   useEffect(() => {
     if (!containerRef.current) return;
 
-    if (!supported()) {
+    if (!isWebGLSupported()) {
       setWebGlSupported(false);
       return;
     }
