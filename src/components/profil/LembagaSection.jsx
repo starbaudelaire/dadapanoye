@@ -82,7 +82,7 @@ export default function LembagaSection({ lembaga = {} }) {
           MITRA KEMASYARAKATAN
         </span>
         <h2 className="text-2xl sm:text-3xl font-bold text-[#f8fafc]">
-          Lembaga &amp; Organisasi Desa
+          Lembaga &amp; Organisasi Padukuhan
         </h2>
         <p className="text-[#94a3b8] text-sm sm:text-base font-normal">
           Organisasi dan lembaga sosial penggerak kegiatan di Padukuhan Dadapan

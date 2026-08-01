@@ -8,10 +8,7 @@ const GlassTabsList = React.forwardRef(({ className, ...props }, ref) => (
   <TabsPrimitive.List
     ref={ref}
     className={cn(
-      'relative inline-flex items-center gap-1 p-1 rounded-2xl',
-      'bg-[#141417]/80 backdrop-blur-xl',
-      'border border-white/10',
-      'shadow-lg',
+      'relative inline-flex items-center gap-6 pb-0 border-b border-white/10 w-full justify-start rounded-none bg-transparent',
       className
     )}
     {...props}
@@ -23,15 +20,13 @@ const GlassTabsTrigger = React.forwardRef(({ className, ...props }, ref) => (
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      'relative inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl',
-      'text-sm font-medium transition-all duration-200',
-      'text-[#a1a1aa] hover:text-[#fafafa]',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50',
+      'relative inline-flex items-center justify-center gap-2 pb-3 -mb-[1px] border-b-2 border-transparent',
+      'text-sm font-semibold transition-all duration-200 cursor-pointer',
+      'text-[#a1a1aa] hover:text-blue-300',
+      'focus-visible:outline-none',
       'disabled:pointer-events-none disabled:opacity-50',
       // active state
-      'data-[state=active]:bg-indigo-600',
-      'data-[state=active]:text-white',
-      'data-[state=active]:shadow-md',
+      'data-[state=active]:text-blue-300 data-[state=active]:border-blue-300',
       className
     )}
     {...props}

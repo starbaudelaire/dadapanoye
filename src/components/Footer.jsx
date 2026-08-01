@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Heart, ArrowUpRight } from 'lucide-react';
+import { Heart, ArrowUpRight, Instagram } from 'lucide-react';
 import { GlassBadge } from '@/components/ui/glass-badge';
 
 export default function Footer() {
@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-8 border-b border-white/10">
           {/* Left Column: Brand Info */}
-          <div className="space-y-2 max-w-sm">
+          <div className="space-y-3 max-w-sm">
             <Link href="/" className="inline-block group">
               <span className="font-extrabold text-xl text-logo-gradient">
                 Padukuhan Dadapan
@@ -21,9 +21,13 @@ export default function Footer() {
             <p className="text-xs sm:text-sm text-[#94a3b8] leading-relaxed font-normal">
               Kalurahan Timbulharjo, Kapanewon Sewon, Kabupaten Bantul, Daerah Istimewa Yogyakarta 55185.
             </p>
-            <GlassBadge variant="accent" className="mt-1">
-              KKN UPNYK 84.021
-            </GlassBadge>
+            <div className="flex items-center gap-2 mt-1">
+              <img src="/logo-upn.webp" alt="Logo UPN" className="h-6 w-auto object-contain brightness-110" />
+              <img src="/logo-kkn.webp" alt="Logo KKN" className="h-6 w-auto object-contain brightness-110" />
+              <GlassBadge variant="accent" className="ml-1">
+                KKN UPNYK 84.021
+              </GlassBadge>
+            </div>
           </div>
 
           {/* Middle Column: Navigation Quick Links */}
@@ -45,14 +49,45 @@ export default function Footer() {
             </Link>
           </div>
 
-          {/* Right Column: CTA Quick Action */}
-          <div className="flex items-center gap-3">
+          {/* Right Column: CTA Quick Action & Social Media Links */}
+          <div className="flex flex-col items-start md:items-end gap-3 shrink-0">
             <Link
               href="/umkm"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-[#181f2e] border border-white/10 hover:border-blue-400/40 text-[#f8fafc] hover:text-white transition-all shadow-md"
             >
               Portal UMKM Warga <ArrowUpRight className="h-4 w-4 text-blue-400" />
             </Link>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://www.instagram.com/lelanadadapan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-xl bg-white/5 border border-white/10 hover:border-pink-500/40 hover:bg-pink-500/10 text-[#94a3b8] hover:text-pink-400 transition-all duration-300 flex items-center justify-center"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-4 w-4" />
+              </a>
+              <a
+                href="https://tiktok.com/@dadapan.oye"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-500/40 hover:bg-cyan-500/10 text-[#94a3b8] hover:text-cyan-400 transition-all duration-300 flex items-center justify-center"
+                aria-label="TikTok"
+              >
+                <svg
+                  className="h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
 

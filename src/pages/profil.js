@@ -52,7 +52,7 @@ export default function Profil({ profil = {}, lembaga = {} }) {
 
       <PageHeader
         title="Profil Padukuhan"
-        subtitle="Sejarah, Visi Misi, Pemerintahan, dan Lembaga Desa Dadapan"
+        subtitle="Deskripsi, Visi & Misi, Kepengurusan, dan Lembaga"
         tag="PROFIL &amp; TATA KELOLA"
       />
 
@@ -71,7 +71,7 @@ export default function Profil({ profil = {}, lembaga = {} }) {
                 </GlassTabsTrigger>
                 <GlassTabsTrigger value="lembaga" className="flex-1 group">
                   <Building2 className="h-4 w-4 flex-shrink-0" />
-                  <span className="hidden group-data-[state=active]:inline sm:inline ml-1.5 font-semibold">Lembaga Desa</span>
+                  <span className="hidden group-data-[state=active]:inline sm:inline ml-1.5 font-semibold">Lembaga</span>
                 </GlassTabsTrigger>
               </GlassTabsList>
             </div>

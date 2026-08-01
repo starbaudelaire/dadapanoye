@@ -16,6 +16,7 @@ import {
   Map,
   MapGeoJSON,
   MapMarker,
+  MarkerContent,
   MarkerLabel,
   MapControls,
 } from '@/components/ui/map';
@@ -156,18 +157,20 @@ export default function PetaGeoJsonClient() {
                   latitude={centroid[1]}
                   onClick={() => setSelectedFeature(props)}
                 >
-                  <div className="relative cursor-pointer group">
-                    <div
-                      className="w-3.5 h-3.5 rounded-full border-2 border-white shadow-md transition-transform group-hover:scale-125"
-                      style={{ backgroundColor: props.warna_hex }}
-                    />
-                    <MarkerLabel
-                      position="top"
-                      className="text-[#f8fafc] font-semibold bg-[#0f1219]/90 border border-white/20 px-2 py-0.5 rounded-lg text-[11px] shadow-xl backdrop-blur-md mb-1 pointer-events-none"
-                    >
-                      {props.padukuhan}
-                    </MarkerLabel>
-                  </div>
+                  <MarkerContent>
+                    <div className="relative cursor-pointer group">
+                      <div
+                        className="w-3.5 h-3.5 rounded-full border-2 border-white shadow-md transition-transform group-hover:scale-125"
+                        style={{ backgroundColor: props.warna_hex }}
+                      />
+                      <MarkerLabel
+                        position="top"
+                        className="text-[#f8fafc] font-semibold bg-[#0f1219]/90 border border-white/20 px-2 py-0.5 rounded-lg text-[11px] shadow-xl backdrop-blur-md mb-1 pointer-events-none"
+                      >
+                        {props.padukuhan}
+                      </MarkerLabel>
+                    </div>
+                  </MarkerContent>
                 </MapMarker>
               );
             })}

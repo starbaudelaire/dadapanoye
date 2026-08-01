@@ -15,6 +15,8 @@ export default function PageHeader({ title, subtitle, tag = 'PADUKUHAN DADAPAN' 
         )}
         <div className="w-12 h-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500 rounded-full mx-auto mt-6" />
       </div>
+      {/* Decorative bottom accent line — Apple Gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500" />
     </div>
   );
 }

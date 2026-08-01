@@ -114,10 +114,10 @@ export default function Navbar() {
                 >
                   <button
                     className={cn(
-                      'flex items-center gap-1 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer border',
+                      'flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer',
                       isActive || router.pathname.startsWith('/profil')
-                        ? 'text-blue-300 bg-gradient-to-r from-blue-500/15 via-indigo-500/15 to-purple-500/15 border-blue-400/30 shadow-md backdrop-blur-md'
-                        : 'text-[#f8fafc] border-transparent hover:text-white hover:bg-[#242c3d]/60 hover:border-white/10'
+                        ? 'text-blue-300'
+                        : 'text-[#f8fafc] hover:text-blue-300'
                     )}
                   >
                     {link.label}
@@ -147,10 +147,10 @@ export default function Navbar() {
                 key={link.label}
                 href={link.href}
                 className={cn(
-                  'px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 border',
+                  'px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-200',
                   isActive
-                    ? 'text-blue-300 bg-gradient-to-r from-blue-500/15 via-indigo-500/15 to-purple-500/15 border-blue-400/30 shadow-md backdrop-blur-md'
-                    : 'text-[#f8fafc] border-transparent hover:text-white hover:bg-[#242c3d]/60 hover:border-white/10'
+                    ? 'text-blue-300'
+                    : 'text-[#f8fafc] hover:text-blue-300'
                 )}
               >
                 {link.label}
@@ -222,10 +222,10 @@ export default function Navbar() {
                 key={link.label}
                 href={link.href}
                 className={cn(
-                  'block px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors border',
+                  'block px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors',
                   router.pathname === link.href
-                    ? 'text-blue-300 bg-gradient-to-r from-blue-500/15 via-indigo-500/15 to-purple-500/15 border-blue-400/30 shadow-md'
-                    : 'text-[#f8fafc] border-transparent hover:bg-[#242c3d]/80'
+                    ? 'text-blue-300'
+                    : 'text-[#f8fafc] hover:text-blue-300'
                 )}
               >
                 {link.label}
