@@ -1,5 +1,5 @@
 "use client";;
-import MapLibreGL from "maplibre-gl";
+import MapLibreGL, { supported } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {
   createContext,
@@ -207,7 +207,7 @@ const Map = forwardRef(function Map(
   useEffect(() => {
     if (!containerRef.current) return;
 
-    if (!MapLibreGL.supported()) {
+    if (!supported()) {
       setWebGlSupported(false);
       return;
     }
