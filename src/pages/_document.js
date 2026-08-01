@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <meta charSet="utf-8" />
         <meta name="description" content="Portal Resmi Padukuhan Dadapan, Timbulharjo, Sewon, Bantul, D.I. Yogyakarta." />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo-kkn.webp" type="image/webp" />
         {/* Google Fonts: Plus Jakarta Sans */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

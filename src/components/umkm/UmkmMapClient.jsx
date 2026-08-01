@@ -504,6 +504,55 @@ export default function UmkmMapClient({ umkmList = [] }) {
               )}
             </MapMarker>
           ))}
+
+          {/* Posko KKN Marker */}
+          <MapMarker
+            longitude={110.351203}
+            latitude={-7.866953}
+            onClick={() => setActivePopupId(activePopupId === 'posko-kkn' ? null : 'posko-kkn')}
+          >
+            <MarkerContent>
+              <div className="flex flex-col items-center group cursor-pointer">
+                <div className="w-9 h-9 rounded-full bg-emerald-600 border-2 border-white shadow-lg flex items-center justify-center hover:bg-emerald-500 hover:scale-125 transition-all duration-200 animate-pulse">
+                  <MapPin className="h-4 w-4 text-white" />
+                </div>
+              </div>
+              <MarkerLabel position="bottom" className="text-emerald-300 font-semibold bg-[#141417]/90 border border-emerald-500/30 px-2 py-0.5 rounded-md text-[10px] shadow-lg mt-1">
+                Posko Hijau KKN 84.021
+              </MarkerLabel>
+            </MarkerContent>
+
+            {activePopupId === 'posko-kkn' && (
+              <MarkerPopup className="w-56 p-0 overflow-hidden bg-[#141417] border border-emerald-500/30 text-[#fafafa] rounded-2xl shadow-2xl">
+                <div className="relative h-24 w-full bg-[#27272a] overflow-hidden flex items-center justify-center border-b border-white/5">
+                  <img
+                    src="/images/posko-hijau.webp"
+                    alt="Posko Hijau KKN 84.021"
+                    className="w-full h-full object-cover"
+                  />
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActivePopupId(null);
+                    }}
+                    className="absolute top-2 right-2 w-5 h-5 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black transition-colors"
+                    aria-label="Close"
+                  >
+                    <X className="h-3 w-3" />
+                  </button>
+                </div>
+
+                <div className="p-3.5 space-y-2 text-center">
+                  <h3 className="font-bold text-xs text-emerald-400">
+                    Posko Hijau KKN 84.021
+                  </h3>
+                  <p className="text-xs text-[#a1a1aa] italic font-normal leading-relaxed">
+                    "Dan kekallah, detik-detik di dalamnya"
+                  </p>
+                </div>
+              </MarkerPopup>
+            )}
+          </MapMarker>
         </Map>
       </div>
 
