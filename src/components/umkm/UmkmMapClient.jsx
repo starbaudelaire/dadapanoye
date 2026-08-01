@@ -57,7 +57,7 @@ function getHaversineDistance(lat1, lon1, lat2, lon2) {
   return R * c;
 }
 
-export default function UmkmMapClient({ umkmList }) {
+export default function UmkmMapClient({ umkmList = [] }) {
   const [mounted, setMounted] = useState(false);
   const [selectedDialog, setSelectedDialog] = useState(null);
   const [activePopupId, setActivePopupId] = useState(null);
@@ -77,9 +77,11 @@ export default function UmkmMapClient({ umkmList }) {
     setMounted(true);
   }, []);
 
+  const safeUmkmList = umkmList || [];
+
   // Filter valid UMKM coordinates
-  const validUmkm = umkmList.filter(
-    (u) => u.lat && u.lng && !isNaN(u.lat) && !isNaN(u.lng)
+  const validUmkm = safeUmkmList.filter(
+    (u) => u && u.lat && u.lng && !isNaN(u.lat) && !isNaN(u.lng)
   );
 
   const handleNextUmkm = () => {

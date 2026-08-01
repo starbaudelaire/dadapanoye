@@ -25,19 +25,21 @@ export default function KatalogUmkm({ umkmList = umkmData }) {
   const [selectedCategory, setSelectedCategory] = useState('Semua');
   const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'list'
 
+  const safeUmkmList = umkmList || [];
+
   // Extract unique categories dynamically from the data
   const categories = [
     'Semua',
-    ...Array.from(new Set(umkmList.map((item) => item.kategori).filter(Boolean))).sort()
+    ...Array.from(new Set(safeUmkmList.map((item) => item.kategori).filter(Boolean))).sort()
   ];
 
   // Filter UMKM list by search query and category
-  const filteredUmkm = umkmList.filter((item) => {
+  const filteredUmkm = safeUmkmList.filter((item) => {
     const matchesCategory = selectedCategory === 'Semua' || item.kategori === selectedCategory;
     const matchesSearch =
-      item.nama.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.produk.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.deskripsi.toLowerCase().includes(searchQuery.toLowerCase());
+      (item.nama || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (item.produk || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (item.deskripsi || '').toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 

@@ -167,6 +167,7 @@ const Map = forwardRef(function Map(
   const [mapInstance, setMapInstance] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isStyleLoaded, setIsStyleLoaded] = useState(false);
+  const [webGlSupported, setWebGlSupported] = useState(true);
   const currentStyleRef = useRef(null);
   const styleTimeoutRef = useRef(null);
   const internalUpdateRef = useRef(false);
@@ -206,56 +207,66 @@ const Map = forwardRef(function Map(
   useEffect(() => {
     if (!containerRef.current) return;
 
+    if (!MapLibreGL.supported()) {
+      setWebGlSupported(false);
+      return;
+    }
+
     const initialStyle =
       resolvedTheme === "dark" ? mapStyles.dark : mapStyles.light;
     currentStyleRef.current = initialStyle;
 
-    const map = new MapLibreGL.Map({
-      container: containerRef.current,
-      style: initialStyle,
-      renderWorldCopies: false,
-      attributionControl: {
-        compact: true,
-      },
-      ...props,
-      ...viewport,
-    });
+    try {
+      const map = new MapLibreGL.Map({
+        container: containerRef.current,
+        style: initialStyle,
+        renderWorldCopies: false,
+        attributionControl: {
+          compact: true,
+        },
+        ...props,
+        ...viewport,
+      });
 
-    const styleDataHandler = () => {
-      clearStyleTimeout();
-      // Delay to ensure style is fully processed before allowing layer operations
-      // This is a workaround to avoid race conditions with the style loading
-      // else we have to force update every layer on setStyle change
-      styleTimeoutRef.current = setTimeout(() => {
-        setIsStyleLoaded(true);
-        if (projection) {
-          map.setProjection(projection);
-        }
-      }, 100);
-    };
-    const loadHandler = () => setIsLoaded(true);
+      const styleDataHandler = () => {
+        clearStyleTimeout();
+        // Delay to ensure style is fully processed before allowing layer operations
+        // This is a workaround to avoid race conditions with the style loading
+        // else we have to force update every layer on setStyle change
+        styleTimeoutRef.current = setTimeout(() => {
+          setIsStyleLoaded(true);
+          if (projection) {
+            map.setProjection(projection);
+          }
+        }, 100);
+      };
+      const loadHandler = () => setIsLoaded(true);
 
-    // Viewport change handler - skip if triggered by internal update
-    const handleMove = () => {
-      if (internalUpdateRef.current) return;
-      onViewportChangeRef.current?.(getViewport(map));
-    };
+      // Viewport change handler - skip if triggered by internal update
+      const handleMove = () => {
+        if (internalUpdateRef.current) return;
+        onViewportChangeRef.current?.(getViewport(map));
+      };
 
-    map.on("load", loadHandler);
-    map.on("styledata", styleDataHandler);
-    map.on("move", handleMove);
-    setMapInstance(map);
+      map.on("load", loadHandler);
+      map.on("styledata", styleDataHandler);
+      map.on("move", handleMove);
+      setMapInstance(map);
 
-    return () => {
-      clearStyleTimeout();
-      map.off("load", loadHandler);
-      map.off("styledata", styleDataHandler);
-      map.off("move", handleMove);
-      map.remove();
-      setIsLoaded(false);
-      setIsStyleLoaded(false);
-      setMapInstance(null);
-    };
+      return () => {
+        clearStyleTimeout();
+        map.off("load", loadHandler);
+        map.off("styledata", styleDataHandler);
+        map.off("move", handleMove);
+        map.remove();
+        setIsLoaded(false);
+        setIsStyleLoaded(false);
+        setMapInstance(null);
+      };
+    } catch (e) {
+      console.error("WebGL failed to initialize:", e);
+      setWebGlSupported(false);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -318,9 +329,22 @@ const Map = forwardRef(function Map(
   return (
     <MapContext.Provider value={contextValue}>
       <div ref={containerRef} className={cn("relative h-full w-full", className)}>
-        {(!isLoaded || loading) && <DefaultLoader />}
-        {/* SSR-safe: children render only when map is loaded on client */}
-        {mapInstance && children}
+        {!webGlSupported ? (
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#141417] p-6 text-center border border-white/10 rounded-2xl">
+            <span className="text-3xl mb-2">⚠️</span>
+            <h4 className="text-sm font-semibold text-white mb-1">Peta Tidak Dapat Dimuat</h4>
+            <p className="text-xs text-[#a1a1aa] max-w-[280px] leading-relaxed">
+              Browser Anda memblokir WebGL (misalnya Brave Shields) atau perangkat Anda tidak mendukungnya. 
+              Silakan nonaktifkan proteksi sidik jari (Shields) Brave atau izinkan WebGL untuk melihat peta.
+            </p>
+          </div>
+        ) : (
+          <>
+            {(!isLoaded || loading) && <DefaultLoader />}
+            {/* SSR-safe: children render only when map is loaded on client */}
+            {mapInstance && children}
+          </>
+        )}
       </div>
     </MapContext.Provider>
   );
