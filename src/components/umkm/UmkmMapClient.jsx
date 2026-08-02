@@ -123,11 +123,16 @@ export default function UmkmMapClient({ umkmList = [] }) {
       const data = await response.json();
 
       if (data.routes?.length > 0) {
-        const routeData = data.routes.map((route) => ({
-          coordinates: route.geometry.coordinates,
-          duration: route.duration,
-          distance: route.distance,
-        }));
+        const routeData = data.routes.map((route) => {
+          // Durasi dihitung berdasarkan kecepatan rata-rata 45 km/jam (12.5 m/s)
+          // agar estimasi waktu lebih realistis untuk rute pedesaan
+          const customDuration = route.distance / 12.5;
+          return {
+            coordinates: route.geometry.coordinates,
+            duration: customDuration,
+            distance: route.distance,
+          };
+        });
         setRoutes(routeData);
         setSelectedIndex(0);
 
@@ -155,7 +160,9 @@ export default function UmkmMapClient({ umkmList = [] }) {
   const handleGetGPSAndRouteNearest = useCallback(() => {
     setIsLocating(true);
     setActivePopupId(null); // Close any open popup
-    if ('geolocation' in navigator) {
+    const defaultStart = { lng: 110.3516, lat: -7.8648 };
+
+    if ('geolocation' in navigator && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
           const userCoords = {
@@ -194,23 +201,53 @@ export default function UmkmMapClient({ umkmList = [] }) {
         (error) => {
           console.error('Error getting GPS location:', error);
           setIsLocating(false);
-          alert('Gagal mengambil lokasi GPS. Pastikan izin lokasi diaktifkan pada browser Anda.');
+          alert('Gagal mengambil lokasi GPS (Pastikan izin lokasi diaktifkan). Rute akan ditampilkan menggunakan titik default Padukuhan Dadapan.');
+          setUserLocation(defaultStart);
+
+          if (validUmkm.length > 0) {
+            let nearest = validUmkm[0];
+            let minDist = getHaversineDistance(defaultStart.lat, defaultStart.lng, nearest.lat, nearest.lng);
+            for (let i = 1; i < validUmkm.length; i++) {
+              const dist = getHaversineDistance(defaultStart.lat, defaultStart.lng, validUmkm[i].lat, validUmkm[i].lng);
+              if (dist < minDist) {
+                minDist = dist;
+                nearest = validUmkm[i];
+              }
+            }
+            fetchRouteToUmkm(defaultStart.lng, defaultStart.lat, nearest);
+          }
         }
       );
     } else {
       setIsLocating(false);
-      alert('Browser Anda tidak mendukung Geolocation.');
+      alert('Akses GPS tidak tersedia di browser Anda (biasanya karena menggunakan koneksi HTTP non-localhost di jaringan lokal). Rute akan ditampilkan menggunakan titik default Padukuhan Dadapan.');
+      setUserLocation(defaultStart);
+
+      if (validUmkm.length > 0) {
+        let nearest = validUmkm[0];
+        let minDist = getHaversineDistance(defaultStart.lat, defaultStart.lng, nearest.lat, nearest.lng);
+        for (let i = 1; i < validUmkm.length; i++) {
+          const dist = getHaversineDistance(defaultStart.lat, defaultStart.lng, validUmkm[i].lat, validUmkm[i].lng);
+          if (dist < minDist) {
+            minDist = dist;
+            nearest = validUmkm[i];
+          }
+        }
+        fetchRouteToUmkm(defaultStart.lng, defaultStart.lat, nearest);
+      }
     }
   }, [validUmkm, fetchRouteToUmkm]);
 
   // Route to specific UMKM clicked by user
   const handleRouteToSpecificUmkm = (umkm) => {
     setActivePopupId(null); // Close popup immediately!
+    const defaultStart = { lng: 110.3516, lat: -7.8648 };
+
     if (userLocation) {
       fetchRouteToUmkm(userLocation.lng, userLocation.lat, umkm);
     } else {
       setIsLocating(true);
-      if ('geolocation' in navigator) {
+      if ('geolocation' in navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (pos) => {
             const userCoords = {
@@ -221,13 +258,19 @@ export default function UmkmMapClient({ umkmList = [] }) {
             setIsLocating(false);
             fetchRouteToUmkm(userCoords.lng, userCoords.lat, umkm);
           },
-          () => {
+          (error) => {
+            console.error('Error getting GPS location:', error);
             setIsLocating(false);
-            const defaultStart = { lng: 110.3516, lat: -7.8648 };
+            alert('Gagal mengambil lokasi GPS (Pastikan izin lokasi diaktifkan). Rute akan ditampilkan menggunakan titik default Padukuhan Dadapan.');
             setUserLocation(defaultStart);
             fetchRouteToUmkm(defaultStart.lng, defaultStart.lat, umkm);
           }
         );
+      } else {
+        setIsLocating(false);
+        alert('Akses GPS tidak tersedia di browser Anda (biasanya karena menggunakan koneksi HTTP non-localhost di jaringan lokal). Rute akan ditampilkan menggunakan titik default Padukuhan Dadapan.');
+        setUserLocation(defaultStart);
+        fetchRouteToUmkm(defaultStart.lng, defaultStart.lat, umkm);
       }
     }
   };
@@ -332,7 +375,7 @@ export default function UmkmMapClient({ umkmList = [] }) {
         {routes.length > 0 && (
           <div className="absolute bottom-4 left-4 z-20 max-w-sm bg-[#141417]/95 backdrop-blur-2xl border border-white/10 rounded-2xl p-3.5 shadow-2xl text-[#fafafa] animate-fade-in space-y-2">
             <div className="flex items-center justify-between border-b border-white/10 pb-2">
-              <span className="text-xs font-semibold text-indigo-400 flex items-center gap-1.5">
+              <span className={`text-xs font-semibold flex items-center gap-1.5 ${activeTargetUmkm?.id === 'posko-kkn' ? 'text-emerald-400' : 'text-indigo-400'}`}>
                 <RouteIcon className="h-3.5 w-3.5" />
                 Rute Menuju {activeTargetUmkm?.nama}
               </span>
@@ -348,13 +391,15 @@ export default function UmkmMapClient({ umkmList = [] }) {
               {routes.map((route, index) => {
                 const isActive = index === selectedIndex;
                 const isFastest = index === 0;
+                const isPosko = activeTargetUmkm?.id === 'posko-kkn';
+                const activeBg = isPosko ? 'bg-emerald-600 hover:bg-emerald-500' : 'bg-indigo-600 hover:bg-indigo-500';
                 return (
                   <button
                     key={index}
                     onClick={() => setSelectedIndex(index)}
                     className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-medium transition-all text-left ${
                       isActive
-                        ? 'bg-indigo-600 text-white shadow-md'
+                        ? `${activeBg} text-white shadow-md`
                         : 'bg-[#27272a]/80 text-[#a1a1aa] hover:text-white hover:bg-[#27272a]'
                     }`}
                   >
@@ -399,11 +444,15 @@ export default function UmkmMapClient({ umkmList = [] }) {
           {/* Render OSRM Routes */}
           {sortedRoutes.map(({ route, index }) => {
             const isSelected = index === selectedIndex;
+            const isPosko = activeTargetUmkm?.id === 'posko-kkn';
+            const routeColor = isSelected 
+              ? (isPosko ? '#10b981' : '#6366f1') 
+              : '#64748b';
             return (
               <MapRoute
                 key={index}
                 coordinates={route.coordinates}
-                color={isSelected ? '#6366f1' : '#64748b'}
+                color={routeColor}
                 width={isSelected ? 6 : 4}
                 opacity={isSelected ? 0.95 : 0.4}
                 onClick={() => setSelectedIndex(index)}
@@ -542,13 +591,29 @@ export default function UmkmMapClient({ umkmList = [] }) {
                   </button>
                 </div>
 
-                <div className="p-3.5 space-y-2 text-center">
-                  <h3 className="font-bold text-xs text-emerald-400">
-                    Posko Hijau KKN 84.021
-                  </h3>
-                  <p className="text-xs text-[#a1a1aa] italic font-normal leading-relaxed">
-                    "Dan kekallah, detik-detik di dalamnya"
-                  </p>
+                <div className="p-3.5 space-y-3 text-center flex flex-col items-center">
+                  <div className="space-y-1">
+                    <h3 className="font-bold text-xs text-emerald-400">
+                      Posko Hijau KKN 84.021
+                    </h3>
+                    <p className="text-xs text-[#a1a1aa] italic font-normal leading-relaxed">
+                      "Dan kekallah, detik-detik di dalamnya"
+                    </p>
+                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRouteToSpecificUmkm({
+                        nama: 'Posko Hijau KKN 84.021',
+                        lng: 110.351203,
+                        lat: -7.866953,
+                        id: 'posko-kkn',
+                      });
+                    }}
+                    className="w-full inline-flex items-center justify-center gap-1.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition-colors shadow-md shadow-emerald-950/20"
+                  >
+                    <Navigation className="h-3 w-3" /> Rute
+                  </button>
                 </div>
               </MarkerPopup>
             )}
