@@ -498,7 +498,7 @@ export default function UmkmMapClient({ umkmList = [] }) {
 
               {/* Clean Card Popup on Controlled Marker Click ONLY */}
               {activePopupId === umkm.id && (
-                <MarkerPopup className="w-56 p-0 overflow-hidden bg-[#141417] border border-white/10 text-[#fafafa] rounded-2xl shadow-2xl">
+                <MarkerPopup className="dark w-56 p-0 overflow-hidden !bg-[#141417] !border-white/10 !text-[#fafafa] rounded-2xl shadow-2xl">
                   <div className="relative h-24 w-full bg-[#27272a] overflow-hidden">
                     {umkm.foto || umkm.thumbnail ? (
                       <img
@@ -572,7 +572,7 @@ export default function UmkmMapClient({ umkmList = [] }) {
             </MarkerContent>
 
             {activePopupId === 'posko-kkn' && (
-              <MarkerPopup className="w-56 p-0 overflow-hidden bg-[#141417] border border-emerald-500/30 text-[#fafafa] rounded-2xl shadow-2xl">
+              <MarkerPopup className="dark w-56 p-0 overflow-hidden !bg-[#141417] !border-emerald-500/30 !text-[#fafafa] rounded-2xl shadow-2xl">
                 <div className="relative h-24 w-full bg-[#27272a] overflow-hidden flex items-center justify-center border-b border-white/5">
                   <img
                     src="/images/posko-hijau.webp"

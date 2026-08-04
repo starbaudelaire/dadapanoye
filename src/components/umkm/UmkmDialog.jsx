@@ -13,7 +13,7 @@ export default function UmkmDialog({ umkm, open, onClose, onNext, onPrevious }) 
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-xl p-0 gap-0 rounded-2xl bg-[#141417] border border-white/10 text-[#fafafa]" showCloseButton={true}>
+      <DialogContent className="max-w-xl p-0 gap-0 rounded-2xl bg-[#181f2e]/95 border border-white/10 text-[#f8fafc]" showCloseButton={true}>
         {/* Navigation Arrows */}
         {onPrevious && (
           <button
@@ -35,7 +35,7 @@ export default function UmkmDialog({ umkm, open, onClose, onNext, onPrevious }) 
         )}
 
         {/* Foto produk */}
-        <div className="relative w-full h-56 bg-[#27272a] rounded-t-2xl overflow-hidden">
+        <div className="relative w-full h-56 bg-[#242c3d]/40 rounded-t-2xl overflow-hidden">
           {umkm.foto || umkm.thumbnail ? (
             <Image src={umkm.foto || umkm.thumbnail} alt={umkm.nama} fill className="object-cover" unoptimized />
           ) : (
@@ -47,7 +47,7 @@ export default function UmkmDialog({ umkm, open, onClose, onNext, onPrevious }) 
 
         {/* Detail */}
         <div className="p-6 pt-4">
-          <DialogTitle className="font-serif text-xl font-bold text-[#fafafa] mb-2">
+          <DialogTitle className="font-serif text-xl font-bold text-[#f8fafc] mb-2">
             {umkm.nama}
           </DialogTitle>
           <div className="flex items-center gap-2 mb-3">
@@ -63,15 +63,15 @@ export default function UmkmDialog({ umkm, open, onClose, onNext, onPrevious }) 
           </div>
 
           {umkm.targetPasar && (
-            <div className="flex items-start gap-2 text-sm text-[#a1a1aa] mb-3 px-3 py-2 bg-[#27272a] border border-white/10 rounded-lg">
-              <span className="font-medium text-[#fafafa] shrink-0">Target Pasar:</span>
+            <div className="flex items-start gap-2 text-sm text-[#a1a1aa] mb-3 px-3 py-2 bg-[#242c3d]/40 border border-white/10 rounded-lg">
+              <span className="font-medium text-[#f8fafc] shrink-0">Target Pasar:</span>
               <span>{umkm.targetPasar}</span>
             </div>
           )}
 
           {umkm.pemilik && umkm.pemilik !== '-' && (
-            <div className="flex items-center gap-2 text-sm text-[#a1a1aa] mb-5 px-3 py-2 bg-[#27272a] border border-white/10 rounded-lg">
-              <span className="font-medium text-[#fafafa]">Pemilik:</span>
+            <div className="flex items-center gap-2 text-sm text-[#a1a1aa] mb-5 px-3 py-2 bg-[#242c3d]/40 border border-white/10 rounded-lg">
+              <span className="font-medium text-[#f8fafc]">Pemilik:</span>
               {umkm.pemilik}
             </div>
           )}

@@ -560,3 +560,50 @@ html:not(.dark) {
     color: #ffffff !important;
   }
 }
+
+/* Revert overrides inside forced dark containers to match true dark mode theme colors */
+html .dark, html [class*="dark"] {
+  .text-blue-300 { color: #93c5fd !important; }
+  .text-blue-400 { color: #60a5fa !important; }
+  .text-blue-500 { color: #3b82f6 !important; }
+  .text-blue-600 { color: #2563eb !important; }
+  .group-hover\:text-blue-400:hover { color: #60a5fa !important; }
+  .hover\:text-blue-400:hover { color: #60a5fa !important; }
+  .hover\:text-white:hover { color: #ffffff !important; }
+  
+  .bg-blue-400 { background-color: #60a5fa !important; }
+  .bg-blue-500 { background-color: #3b82f6 !important; }
+  .bg-blue-600 { background-color: #2563eb !important; }
+  .bg-blue-500\/10 { background-color: rgba(59, 130, 246, 0.1) !important; }
+  .bg-blue-500\/20 { background-color: rgba(59, 130, 246, 0.2) !important; }
+  .bg-blue-600\/90 { background-color: rgba(37, 99, 235, 0.9) !important; }
+  .hover\:bg-blue-600:hover { background-color: #2563eb !important; }
+  .group-hover\:bg-blue-600:hover { background-color: #2563eb !important; }
+
+  .border-blue-400 { border-color: #60a5fa !important; }
+  .border-blue-500 { border-color: #3b82f6 !important; }
+  .border-blue-400\/30 { border-color: rgba(96, 165, 250, 0.3) !important; }
+  .border-blue-400\/40 { border-color: rgba(96, 165, 250, 0.4) !important; }
+  .border-blue-400\/50 { border-color: rgba(96, 165, 250, 0.5) !important; }
+  .border-blue-400\/60 { border-color: rgba(96, 165, 250, 0.6) !important; }
+  .border-blue-500\/30 { border-color: rgba(59, 130, 246, 0.3) !important; }
+  .hover\:border-blue-400\/40:hover { border-color: rgba(96, 165, 250, 0.4) !important; }
+  .group-hover\:border-blue-500:hover { border-color: #3b82f6 !important; }
+  .group-hover\:border-blue-400\/40:hover { border-color: rgba(96, 165, 250, 0.4) !important; }
+  
+  .from-blue-500 { --tw-gradient-from: #3b82f6 !important; --tw-gradient-to: rgba(59, 130, 246, 0) !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important; }
+  .via-indigo-500 { --tw-gradient-to: rgba(99, 102, 241, 0) !important; --tw-gradient-stops: var(--tw-gradient-from), #6366f1 var(--tw-gradient-via-position), var(--tw-gradient-to) !important; }
+  .to-indigo-600 { --tw-gradient-to: #4f46e5 !important; }
+  .to-blue-600 { --tw-gradient-to: #2563eb !important; }
+  
+  .from-blue-400 { --tw-gradient-from: #60a5fa !important; --tw-gradient-to: rgba(96, 165, 250, 0) !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important; }
+  .to-purple-500 { --tw-gradient-to: #a855f7 !important; }
+  
+  .from-blue-500\/20 { --tw-gradient-from: rgba(59, 130, 246, 0.2) !important; --tw-gradient-to: rgba(59, 130, 246, 0) !important; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important; }
+  .to-indigo-500\/20 { --tw-gradient-to: rgba(99, 102, 241, 0.2) !important; }
+
+  /* Revert button icons inside dark containers */
+  [class*="bg-[#242c3d]"].text-white {
+    color: #ffffff !important;
+  }
+}
